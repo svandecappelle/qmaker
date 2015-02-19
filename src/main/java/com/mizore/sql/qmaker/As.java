@@ -1,4 +1,4 @@
-package qmaker;
+package com.mizore.sql.qmaker;
 
 public class As {
 	private String name;

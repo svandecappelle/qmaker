@@ -1,4 +1,4 @@
-package qmaker;
+package com.mizore.sql.qmaker;
 
 public class DataBaseConstants {
 	public static final String SELECT = "SELECT";

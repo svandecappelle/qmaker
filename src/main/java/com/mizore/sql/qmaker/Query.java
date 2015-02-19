@@ -1,4 +1,4 @@
-package qmaker;
+package com.mizore.sql.qmaker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,11 @@ public class Query {
 
 	private List<Field> fields;
 
+	private List<Table> tables;
+
 	public Query() {
 		fields = new ArrayList<Field>();
+		tables = new ArrayList<Table>();
 	}
 
 	public Field select(String table, String field) {
@@ -18,6 +21,11 @@ public class Query {
 		fields.add(fieldOutput);
 
 		return fieldOutput;
+	}
+
+	public From from(String table) {
+		From from = new From(table);
+		return from;
 	}
 
 	public String asString() {
@@ -30,14 +38,15 @@ public class Query {
 		for (Field field : fields) {
 			buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
 			buffer.append(field.getTable().getName());
-
-			buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
+			buffer.append(DataBaseConstants.DOT_SEPARATOR);
 			buffer.append(field.getName());
-			buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
-			buffer.append(DataBaseConstants.AS);
-			buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
-			buffer.append(field.as().getName());
 
+			if (field.getAlias() != null) {
+				buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
+				buffer.append(DataBaseConstants.AS);
+				buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
+				buffer.append(field.getAlias().getName());
+			}
 			if (!tableToJoin.contains(field.getTable())) {
 				tableToJoin.add(field.getTable());
 			}

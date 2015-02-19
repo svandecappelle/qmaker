@@ -1,4 +1,4 @@
-package qmaker;
+package com.mizore.sql.qmaker;
 
 public class Field {
 
@@ -7,9 +7,9 @@ public class Field {
 
 	private As as;
 
-	public As as() {
+	public As as(String alias) {
 		if (as == null) {
-			this.as = new As(name);
+			this.as = new As(alias);
 		}
 		return this.as;
 	}
@@ -25,5 +25,9 @@ public class Field {
 
 	public Table getTable() {
 		return dataBaseTable;
+	}
+
+	public As getAlias() {
+		return as;
 	}
 }
