@@ -23,7 +23,7 @@ public class Table {
 	}
 
 	public String getSchema() {
-		if(schema == null){
+		if (schema == null) {
 			return "";
 		}
 		return schema;
@@ -69,13 +69,9 @@ public class Table {
 			tableString.append(schema);
 			tableString.append(".");
 		}
-		
-		tableString.append(tableString);
 
-		if (this.alias != null) {
-			tableString.append(" AS ");
-			tableString.append(alias);
-		}
-		return super.toString();
+		tableString.append(name);
+
+		return tableString.toString();
 	}
 }

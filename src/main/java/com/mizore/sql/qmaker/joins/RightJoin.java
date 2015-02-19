@@ -6,4 +6,9 @@ public class RightJoin extends Join {
 		super(table);
 	}
 
+	@Override
+	public JoinType getType() {
+		return JoinType.RIGHT;
+	}
+
 }

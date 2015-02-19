@@ -13,4 +13,6 @@ public class DataBaseConstants {
 
 	public static final String DOT_SEPARATOR = ".";
 
+	public static final String JOIN = "JOIN";
+
 }

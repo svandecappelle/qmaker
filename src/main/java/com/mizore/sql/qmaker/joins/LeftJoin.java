@@ -6,4 +6,9 @@ public class LeftJoin extends Join {
 		super(table);
 	}
 
+	@Override
+	public JoinType getType() {
+		return JoinType.LEFT;
+	}
+
 }

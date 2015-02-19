@@ -6,12 +6,10 @@ import java.util.List;
 public class Query {
 
 	private List<Field> fields;
-
-	private List<Table> tables;
+	private From from;
 
 	public Query() {
 		fields = new ArrayList<Field>();
-		tables = new ArrayList<Table>();
 	}
 
 	public Field select(String table, String field) {
@@ -24,14 +22,12 @@ public class Query {
 	}
 
 	public From from(String table) {
-		From from = new From(table);
+		this.from = new From(table);
 		return from;
 	}
 
 	public String asString() {
 		StringBuffer buffer = new StringBuffer();
-
-		List<Table> tableToJoin = new ArrayList<Table>();
 
 		buffer.append(DataBaseConstants.SELECT);
 		int dataFieldsCount = fields.size();
@@ -47,9 +43,6 @@ public class Query {
 				buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
 				buffer.append(field.getAlias().getName());
 			}
-			if (!tableToJoin.contains(field.getTable())) {
-				tableToJoin.add(field.getTable());
-			}
 
 			dataFieldsCount -= 1;
 			if (dataFieldsCount > 0) {
@@ -59,22 +52,8 @@ public class Query {
 
 		buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
 		buffer.append(DataBaseConstants.FROM);
-		int tablesCount = tableToJoin.size();
-
-		for (Table tables : tableToJoin) {
-			buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
-			if (tables.hasSchema()) {
-				buffer.append(tables.getSchema());
-				buffer.append(DataBaseConstants.DOT_SEPARATOR);
-			}
-			buffer.append(tables.getName());
-
-			tablesCount -= 1;
-			if (tablesCount > 0) {
-				buffer.append(DataBaseConstants.FIELD_SEPARATOR);
-			}
-
-		}
+		buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
+		buffer.append(from.toString());
 
 		return buffer.toString();
 	}

@@ -1,5 +1,6 @@
 package com.mizore.sql.qmaker.string;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class S {
@@ -9,6 +10,7 @@ public class S {
 
 	public S(String src) {
 		this.src = src;
+		this.templates = new ArrayList<Template>();
 	}
 
 	public S template(Template template) {

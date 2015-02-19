@@ -1,8 +1,12 @@
 package com.mizore.sql.qmaker.joins;
 
-public class Join {
+import com.mizore.sql.qmaker.DataBaseConstants;
+
+public abstract class Join {
 
 	private String table;
+
+	private String on;
 
 	public Join(String table) {
 		this.table = table;
@@ -10,6 +14,8 @@ public class Join {
 
 	@Override
 	public String toString() {
-		return table;
+		return DataBaseConstants.EMPTY_SEPARATOR.concat(getType().name()).concat(DataBaseConstants.EMPTY_SEPARATOR).concat(DataBaseConstants.JOIN).concat(DataBaseConstants.EMPTY_SEPARATOR).concat(table);
 	}
+
+	public abstract JoinType getType();
 }

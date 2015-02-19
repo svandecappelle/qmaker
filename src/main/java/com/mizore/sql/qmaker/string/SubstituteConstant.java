@@ -19,7 +19,7 @@ public class SubstituteConstant implements Subsitute {
 	}
 
 	public String getReplacementPattern() {
-		return constant;
+		return "{{".concat(constant).concat("}}");
 	}
 
 }

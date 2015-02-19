@@ -1,8 +1,5 @@
 package com.mizore.sql.qmaker;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.mizore.sql.qmaker.joins.InnerJoin;
 import com.mizore.sql.qmaker.joins.Join;
 import com.mizore.sql.qmaker.joins.LeftJoin;
@@ -60,22 +57,22 @@ public class From {
 		S buildedString = null;
 		if (this.isQuery()){
 			if (this.joins != null){
-				buildedString = new S(" FROM ({{table}}) {{alias}} {{joins}}").template(new Template().c("table", this.table).c("alias", this.table.getAs()).c("joins", this.joins.join("")));
+				buildedString = new S("({{table}}){{alias}}{{joins}}").template(new Template().c("table", this.table).c("alias", this.table.getAs()).c("joins", this.joins.join("")));
 			}else{
-				buildedString = new S(" FROM ({{table}}) {{alias}}").template(new Template().c("table", this.table).c("alias", this.table.getAs()));
+				buildedString = new S("({{table}}){{alias}}").template(new Template().c("table", this.table).c("alias", this.table.getAs()));
 			}
 		}else{
 			if(this.alias != null){
 				if (this.joins != null){
-					buildedString = new S(" FROM ({{table}}) {{alias}} {{joins}}").template(new Template().c("table", this.table).c("alias", this.alias).c("joins", this.joins.join("")));
+					buildedString = new S("({{table}}){{alias}}{{joins}}").template(new Template().c("table", this.table).c("alias", this.alias).c("joins", this.joins.join("")));
 				}else{
-					buildedString = new S(" FROM ({{table}}) {{alias}} ").template(new Template().c("table", this.table).c("alias", this.alias));
+					buildedString = new S("({{table}}){{alias}}").template(new Template().c("table", this.table).c("alias", this.alias));
 				}
 			}else{
 				if (this.joins != null){
-					buildedString = new S(" FROM {{table}} {{joins}}").template(new Template().c("table", this.table).c("joins", this.joins.join("")));
+					buildedString = new S("{{table}}{{joins}}").template(new Template().c("table", this.table).c("joins", this.joins.join("")));
 				}else{
-					buildedString = new S(" FROM {{table}} ").template(new Template().c("table", this.table));
+					buildedString = new S("{{table}}").template(new Template().c("table", this.table));
 				}
 			}
 		}
