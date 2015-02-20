@@ -1,9 +1,5 @@
 package com.mizore.sql.qmaker.query;
 
-import com.mizore.sql.qmaker.query.joins.InnerJoin;
-import com.mizore.sql.qmaker.query.joins.LeftJoin;
-import com.mizore.sql.qmaker.query.joins.ListJoin;
-import com.mizore.sql.qmaker.query.joins.RightJoin;
 import com.mizore.sql.qmaker.utils.string.S;
 import com.mizore.sql.qmaker.utils.string.Template;
 

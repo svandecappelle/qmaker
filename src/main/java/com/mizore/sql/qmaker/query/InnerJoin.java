@@ -1,6 +1,5 @@
-package com.mizore.sql.qmaker.query.joins;
+package com.mizore.sql.qmaker.query;
 
-import com.mizore.sql.qmaker.query.Join;
 
 public class InnerJoin extends Join {
 
