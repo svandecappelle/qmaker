@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.mizore.sql.qmaker.Query;
+import com.mizore.sql.qmaker.query.Query;
 
 public class QuerySimpleTest {
 

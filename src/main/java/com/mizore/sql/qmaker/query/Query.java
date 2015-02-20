@@ -1,11 +1,8 @@
-package com.mizore.sql.qmaker;
+package com.mizore.sql.qmaker.query;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mizore.sql.qmaker.query.Field;
-import com.mizore.sql.qmaker.query.From;
-import com.mizore.sql.qmaker.query.Table;
 import com.mizore.sql.qmaker.utils.SqlStringConstants;
 
 /**
