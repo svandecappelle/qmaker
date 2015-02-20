@@ -117,9 +117,9 @@ public class From {
         } else {
             if (this.alias != null) {
                 if (this.joins != null) {
-                    buildedString = new S("({{table}}){{alias}}{{joins}}").template(new Template().c("table", this.table).c("alias", this.alias).c("joins", this.joins));
+                    buildedString = new S("({{table}}) AS {{alias}}{{joins}}").template(new Template().c("table", this.table).c("alias", this.alias).c("joins", this.joins));
                 } else {
-                    buildedString = new S("({{table}}){{alias}}").template(new Template().c("table", this.table).c("alias", this.alias));
+                    buildedString = new S("({{table}}) AS {{alias}}").template(new Template().c("table", this.table).c("alias", this.alias));
                 }
             } else {
                 if (this.joins != null) {

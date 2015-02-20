@@ -17,6 +17,10 @@ import com.mizore.sql.qmaker.utils.SqlClauses;
  * @author svandecappelle
  *
  */
+/**
+ * @author svandecappelle
+ *
+ */
 public class Query {
 
     // fields on select.
@@ -24,6 +28,9 @@ public class Query {
 
     // From clause.
     private From from;
+
+    // Query alias.
+    private String alias;
 
     /**
      * Create a query object.
@@ -80,6 +87,10 @@ public class Query {
     public String asString() {
         StringBuilder buffer = new StringBuilder();
 
+        if (alias != null) {
+            buffer.append(SeparatorType.LEFT_PARENTHESIS);
+        }
+
         buffer.append(SqlClauses.SELECT);
         int dataFieldsCount = fields.size();
         for (Field field : fields) {
@@ -97,11 +108,29 @@ public class Query {
         buffer.append(SeparatorType.EMPTY);
         buffer.append(from.toString());
 
+        if (alias != null) {
+            buffer.append(SeparatorType.RIGHT_PARENTHESIS);
+            buffer.append(SeparatorType.EMPTY);
+            buffer.append(SqlClauses.AS);
+            buffer.append(SeparatorType.EMPTY);
+            buffer.append(alias);
+        }
+
         return buffer.toString();
     }
 
     @Override
     public String toString() {
         return asString();
+    }
+
+    /**
+     * Add alias on query.
+     * 
+     * @param alias
+     *            alias name.
+     */
+    public void as(String alias) {
+        this.alias = alias;
     }
 }
