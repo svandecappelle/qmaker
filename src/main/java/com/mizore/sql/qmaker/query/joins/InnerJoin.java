@@ -1,4 +1,4 @@
-package com.mizore.sql.qmaker.joins;
+package com.mizore.sql.qmaker.query.joins;
 
 import com.mizore.sql.qmaker.query.Join;
 

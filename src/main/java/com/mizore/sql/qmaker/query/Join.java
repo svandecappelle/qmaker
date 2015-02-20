@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.mizore.sql.qmaker.filters.expressions.EqualsExpression;
 import com.mizore.sql.qmaker.filters.expressions.Expression;
-import com.mizore.sql.qmaker.joins.JoinType;
+import com.mizore.sql.qmaker.query.joins.JoinType;
 import com.mizore.sql.qmaker.utils.SqlStringConstants;
 
 public abstract class Join {
