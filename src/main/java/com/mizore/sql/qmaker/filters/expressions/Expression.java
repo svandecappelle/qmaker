@@ -1,6 +1,6 @@
 package com.mizore.sql.qmaker.filters.expressions;
 
-import com.mizore.sql.qmaker.joins.Join;
+import com.mizore.sql.qmaker.query.Join;
 import com.mizore.sql.qmaker.utils.SqlStringConstants;
 
 /**

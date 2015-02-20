@@ -2,6 +2,8 @@ package com.mizore.sql.qmaker.joins;
 
 import java.util.ArrayList;
 
+import com.mizore.sql.qmaker.query.Join;
+
 public class ListJoin<T extends Join> extends ArrayList<T> {
 
     /**
