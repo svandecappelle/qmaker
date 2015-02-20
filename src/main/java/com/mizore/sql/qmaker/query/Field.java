@@ -1,6 +1,7 @@
 package com.mizore.sql.qmaker.query;
 
-import com.mizore.sql.qmaker.utils.SqlStringConstants;
+import com.mizore.sql.qmaker.utils.SeparatorType;
+import com.mizore.sql.qmaker.utils.SqlClauses;
 
 /**
  * @author svandecappelle
@@ -80,15 +81,15 @@ public class Field {
         StringBuilder builder = new StringBuilder();
         if (table != null) {
             builder.append(table.toString());
-            builder.append(SqlStringConstants.DOT_SEPARATOR);
+            builder.append(SeparatorType.DOT);
         }
 
         builder.append(getName());
 
         if (getAlias() != null) {
-            builder.append(SqlStringConstants.EMPTY_SEPARATOR);
-            builder.append(SqlStringConstants.AS);
-            builder.append(SqlStringConstants.EMPTY_SEPARATOR);
+            builder.append(SeparatorType.EMPTY);
+            builder.append(SqlClauses.AS);
+            builder.append(SeparatorType.EMPTY);
             builder.append(getAlias().getName());
         }
 

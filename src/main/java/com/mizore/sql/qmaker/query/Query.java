@@ -3,7 +3,8 @@ package com.mizore.sql.qmaker.query;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mizore.sql.qmaker.utils.SqlStringConstants;
+import com.mizore.sql.qmaker.utils.SeparatorType;
+import com.mizore.sql.qmaker.utils.SqlClauses;
 
 /**
  * @author svandecappelle
@@ -62,21 +63,21 @@ public class Query {
     public String asString() {
         StringBuilder buffer = new StringBuilder();
 
-        buffer.append(SqlStringConstants.SELECT);
+        buffer.append(SqlClauses.SELECT);
         int dataFieldsCount = fields.size();
         for (Field field : fields) {
-            buffer.append(SqlStringConstants.EMPTY_SEPARATOR);
+            buffer.append(SeparatorType.EMPTY);
             buffer.append(field.toString());
 
             dataFieldsCount -= 1;
             if (dataFieldsCount > 0) {
-                buffer.append(SqlStringConstants.FIELD_SEPARATOR);
+                buffer.append(SeparatorType.FIELD);
             }
         }
 
-        buffer.append(SqlStringConstants.EMPTY_SEPARATOR);
-        buffer.append(SqlStringConstants.FROM);
-        buffer.append(SqlStringConstants.EMPTY_SEPARATOR);
+        buffer.append(SeparatorType.EMPTY);
+        buffer.append(SqlClauses.FROM);
+        buffer.append(SeparatorType.EMPTY);
         buffer.append(from.toString());
 
         return buffer.toString();

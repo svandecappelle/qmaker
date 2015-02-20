@@ -1,6 +1,6 @@
 package com.mizore.sql.qmaker.query;
 
-import com.mizore.sql.qmaker.utils.SqlStringConstants;
+import com.mizore.sql.qmaker.utils.SeparatorType;
 
 /**
  * @author svandecappelle
@@ -106,7 +106,7 @@ public class Table {
 
         if (this.schema != null) {
             tableString.append(schema);
-            tableString.append(SqlStringConstants.DOT_SEPARATOR);
+            tableString.append(SeparatorType.DOT);
         }
 
         tableString.append(name);

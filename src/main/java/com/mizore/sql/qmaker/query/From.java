@@ -110,20 +110,20 @@ public class From {
         S buildedString = null;
         if (this.isQuery()) {
             if (this.joins != null) {
-                buildedString = new S("({{table}}){{alias}}{{joins}}").template(new Template().c("table", this.table).c("alias", this.table.getAs()).c("joins", this.joins.join("")));
+                buildedString = new S("({{table}}){{alias}}{{joins}}").template(new Template().c("table", this.table).c("alias", this.table.getAs()).c("joins", this.joins));
             } else {
                 buildedString = new S("({{table}}){{alias}}").template(new Template().c("table", this.table).c("alias", this.table.getAs()));
             }
         } else {
             if (this.alias != null) {
                 if (this.joins != null) {
-                    buildedString = new S("({{table}}){{alias}}{{joins}}").template(new Template().c("table", this.table).c("alias", this.alias).c("joins", this.joins.join("")));
+                    buildedString = new S("({{table}}){{alias}}{{joins}}").template(new Template().c("table", this.table).c("alias", this.alias).c("joins", this.joins));
                 } else {
                     buildedString = new S("({{table}}){{alias}}").template(new Template().c("table", this.table).c("alias", this.alias));
                 }
             } else {
                 if (this.joins != null) {
-                    buildedString = new S("{{table}}{{joins}}").template(new Template().c("table", this.table).c("joins", this.joins.join("")));
+                    buildedString = new S("{{table}}{{joins}}").template(new Template().c("table", this.table).c("joins", this.joins));
                 } else {
                     buildedString = new S("{{table}}").template(new Template().c("table", this.table));
                 }

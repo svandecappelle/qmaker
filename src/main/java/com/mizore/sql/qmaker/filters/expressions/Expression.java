@@ -1,7 +1,7 @@
 package com.mizore.sql.qmaker.filters.expressions;
 
 import com.mizore.sql.qmaker.query.Join;
-import com.mizore.sql.qmaker.utils.SqlStringConstants;
+import com.mizore.sql.qmaker.utils.SeparatorType;
 
 /**
  * @author svandecappelle
@@ -17,7 +17,7 @@ public abstract class Expression {
     private ExpressionType expressionType;
 
     // Expression.
-    private String expression;
+    private String sqlExpression;
 
     /**
      * Construct expression.
@@ -27,9 +27,9 @@ public abstract class Expression {
      * @param expression
      *            expression string filter.
      */
-    public Expression(ExpressionType type, String expression) {
+    public Expression(ExpressionType type, String sqlExpression) {
         this.expressionType = type;
-        this.expression = expression;
+        this.sqlExpression = sqlExpression;
     }
 
     /**
@@ -46,16 +46,16 @@ public abstract class Expression {
      * 
      * @return the expression filter.
      */
-    public String getExpression() {
-        return expression;
+    public String getSqlExpression() {
+        return sqlExpression;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(getExpressionType().toSql());
-        builder.append(SqlStringConstants.EMPTY_SEPARATOR);
-        builder.append(getExpression());
+        builder.append(SeparatorType.EMPTY);
+        builder.append(getSqlExpression());
         return builder.toString();
     }
 }

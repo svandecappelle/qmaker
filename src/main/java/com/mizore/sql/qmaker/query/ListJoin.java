@@ -25,7 +25,8 @@ public class ListJoin<T extends Join> extends ArrayList<T> {
      * @param string
      * @return
      */
-    public String join(String string) {
+    @Override
+    public String toString() {
         StringBuilder joins = new StringBuilder();
         for (Join joinElement : this) {
             joins.append(joinElement.toString());
