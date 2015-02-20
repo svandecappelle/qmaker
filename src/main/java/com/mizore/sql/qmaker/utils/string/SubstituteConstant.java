@@ -1,4 +1,4 @@
-package com.mizore.sql.qmaker.string;
+package com.mizore.sql.qmaker.utils.string;
 
 public class SubstituteConstant implements Subsitute {
 

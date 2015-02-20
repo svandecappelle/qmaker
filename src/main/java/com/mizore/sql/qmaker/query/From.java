@@ -1,12 +1,13 @@
-package com.mizore.sql.qmaker;
+package com.mizore.sql.qmaker.query;
 
+import com.mizore.sql.qmaker.Query;
 import com.mizore.sql.qmaker.joins.InnerJoin;
 import com.mizore.sql.qmaker.joins.Join;
 import com.mizore.sql.qmaker.joins.LeftJoin;
 import com.mizore.sql.qmaker.joins.ListJoin;
 import com.mizore.sql.qmaker.joins.RightJoin;
-import com.mizore.sql.qmaker.string.S;
-import com.mizore.sql.qmaker.string.Template;
+import com.mizore.sql.qmaker.utils.string.S;
+import com.mizore.sql.qmaker.utils.string.Template;
 
 /**
  * @author svandecappelle
