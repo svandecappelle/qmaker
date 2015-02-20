@@ -14,9 +14,11 @@ public class RightJoin extends Join {
      * 
      * @param table
      *            the table on which right join references.
+     * @param fromClause
+     *            from src clause.
      */
-    public RightJoin(String table) {
-        super(table);
+    public RightJoin(String table, From fromClause) {
+        super(table, fromClause);
     }
 
     @Override

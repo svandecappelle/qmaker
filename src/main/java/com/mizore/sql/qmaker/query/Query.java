@@ -13,6 +13,10 @@ import com.mizore.sql.qmaker.utils.SqlClauses;
  *
  *        Make a query.
  */
+/**
+ * @author svandecappelle
+ *
+ */
 public class Query {
 
     // fields on select.
@@ -53,6 +57,19 @@ public class Query {
     public From from(String table) {
         this.from = new From(table);
         return from;
+    }
+
+    /**
+     * Add an inner join to query.
+     * 
+     * @return inner join SQL clause added to query.
+     */
+    public InnerJoin innerJoin(String table) {
+        if (from != null) {
+            return from.innerJoin(table);
+        } else {
+            throw new IllegalQueryFormedException("SQl Join can only be added to and existing from clause. Check you've added from SQL clause on Query.");
+        }
     }
 
     /**

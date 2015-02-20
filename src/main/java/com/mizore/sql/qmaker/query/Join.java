@@ -26,14 +26,17 @@ public abstract class Join {
     // Expression filters.
     private List<Expression> expressionsJoinFilters;
 
+    private From fromClause;
+
     /**
      * Constructor. Join SQL on a table.
      * 
      * @param tableName
      *            table name.
      */
-    public Join(String tableName) {
+    public Join(String tableName, From fromClause) {
         this.table = new Table(tableName);
+        this.fromClause = fromClause;
         this.expressionsJoinFilters = new ArrayList<Expression>();
     }
 
@@ -55,8 +58,9 @@ public abstract class Join {
      * @param the
      *            expression right side.
      */
-    public void equalsTo(String expression) {
+    public From equalsTo(String expression) {
         expressionsJoinFilters.add(new EqualsExpression(expression));
+        return fromClause;
     }
 
     /**

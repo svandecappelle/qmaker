@@ -13,9 +13,12 @@ public class InnerJoin extends Join {
      * Create a join.
      * 
      * @param table
+     *            table on which join is referenced.
+     * @param fromClause
+     *            source from clause.
      */
-    public InnerJoin(String table) {
-        super(table);
+    public InnerJoin(String table, From fromClause) {
+        super(table, fromClause);
     }
 
     @Override

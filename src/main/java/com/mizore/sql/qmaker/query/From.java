@@ -73,8 +73,8 @@ public class From {
      *            the table on wich the join must be done.
      * @return the join clause created.
      */
-    public Join innerJoin(String table) {
-        InnerJoin innerJoin = new InnerJoin(table);
+    public InnerJoin innerJoin(String table) {
+        InnerJoin innerJoin = new InnerJoin(table, this);
         this.joins.add(innerJoin);
         return innerJoin;
     }
@@ -87,7 +87,7 @@ public class From {
      * @return the join clause created.
      */
     public Join leftJoin(String table) {
-        LeftJoin innerJoin = new LeftJoin(table);
+        LeftJoin innerJoin = new LeftJoin(table, this);
         this.joins.add(innerJoin);
         return innerJoin;
     }
@@ -100,7 +100,7 @@ public class From {
      * @return the join clause created.
      */
     public Join rightJoin(String table) {
-        RightJoin innerJoin = new RightJoin(table);
+        RightJoin innerJoin = new RightJoin(table, this);
         this.joins.add(innerJoin);
         return innerJoin;
     }

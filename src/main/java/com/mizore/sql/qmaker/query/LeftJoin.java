@@ -14,9 +14,11 @@ public class LeftJoin extends Join {
      * 
      * @param table
      *            the table on which left join references.
+     * @param fromClause
+     *            from src clause.
      */
-    public LeftJoin(String table) {
-        super(table);
+    public LeftJoin(String table, From fromClause) {
+        super(table, fromClause);
     }
 
     @Override
