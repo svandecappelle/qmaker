@@ -1,7 +1,7 @@
 package com.mizore.sql.qmaker.filters.expressions;
 
-import com.mizore.sql.qmaker.DataBaseConstants;
 import com.mizore.sql.qmaker.joins.Join;
+import com.mizore.sql.qmaker.utils.SqlStringConstants;
 
 /**
  * @author svandecappelle
@@ -33,7 +33,7 @@ public abstract class Expression {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(getExpressionType().toSql());
-        builder.append(DataBaseConstants.EMPTY_SEPARATOR);
+        builder.append(SqlStringConstants.EMPTY_SEPARATOR);
         builder.append(getExpression());
         return builder.toString();
     }

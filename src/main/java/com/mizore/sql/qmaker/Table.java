@@ -1,5 +1,7 @@
 package com.mizore.sql.qmaker;
 
+import com.mizore.sql.qmaker.utils.SqlStringConstants;
+
 /**
  * @author svandecappelle
  *
@@ -104,7 +106,7 @@ public class Table {
 
         if (this.schema != null) {
             tableString.append(schema);
-            tableString.append(DataBaseConstants.DOT_SEPARATOR);
+            tableString.append(SqlStringConstants.DOT_SEPARATOR);
         }
 
         tableString.append(name);

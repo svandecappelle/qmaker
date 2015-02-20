@@ -1,5 +1,7 @@
 package com.mizore.sql.qmaker;
 
+import com.mizore.sql.qmaker.utils.SqlStringConstants;
+
 public class Field {
 
     private Table table;
@@ -43,15 +45,15 @@ public class Field {
         StringBuilder builder = new StringBuilder();
         if (table != null) {
             builder.append(table.toString());
-            builder.append(DataBaseConstants.DOT_SEPARATOR);
+            builder.append(SqlStringConstants.DOT_SEPARATOR);
         }
 
         builder.append(getName());
 
         if (getAlias() != null) {
-            builder.append(DataBaseConstants.EMPTY_SEPARATOR);
-            builder.append(DataBaseConstants.AS);
-            builder.append(DataBaseConstants.EMPTY_SEPARATOR);
+            builder.append(SqlStringConstants.EMPTY_SEPARATOR);
+            builder.append(SqlStringConstants.AS);
+            builder.append(SqlStringConstants.EMPTY_SEPARATOR);
             builder.append(getAlias().getName());
         }
 

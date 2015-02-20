@@ -1,6 +1,6 @@
-package com.mizore.sql.qmaker;
+package com.mizore.sql.qmaker.utils;
 
-public class DataBaseConstants {
+public class SqlStringConstants {
     public static final String SELECT = "SELECT";
 
     public static final String FROM = "FROM";

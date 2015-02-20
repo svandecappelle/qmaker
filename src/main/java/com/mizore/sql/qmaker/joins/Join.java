@@ -3,11 +3,11 @@ package com.mizore.sql.qmaker.joins;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mizore.sql.qmaker.DataBaseConstants;
 import com.mizore.sql.qmaker.Field;
 import com.mizore.sql.qmaker.Table;
 import com.mizore.sql.qmaker.filters.expressions.EqualsExpression;
 import com.mizore.sql.qmaker.filters.expressions.Expression;
+import com.mizore.sql.qmaker.utils.SqlStringConstants;
 
 public abstract class Join {
 
@@ -23,22 +23,22 @@ public abstract class Join {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(DataBaseConstants.EMPTY_SEPARATOR);
+        builder.append(SqlStringConstants.EMPTY_SEPARATOR);
         builder.append(getType().name());
-        builder.append(DataBaseConstants.EMPTY_SEPARATOR);
-        builder.append(DataBaseConstants.JOIN);
-        builder.append(DataBaseConstants.EMPTY_SEPARATOR);
+        builder.append(SqlStringConstants.EMPTY_SEPARATOR);
+        builder.append(SqlStringConstants.JOIN);
+        builder.append(SqlStringConstants.EMPTY_SEPARATOR);
         builder.append(table.toString());
 
         if (on != null) {
-            builder.append(DataBaseConstants.EMPTY_SEPARATOR);
-            builder.append(DataBaseConstants.ON);
-            builder.append(DataBaseConstants.EMPTY_SEPARATOR);
+            builder.append(SqlStringConstants.EMPTY_SEPARATOR);
+            builder.append(SqlStringConstants.ON);
+            builder.append(SqlStringConstants.EMPTY_SEPARATOR);
             builder.append(on);
         }
 
         for (Expression expression : expressionsJoinFilters) {
-            builder.append(DataBaseConstants.EMPTY_SEPARATOR);
+            builder.append(SqlStringConstants.EMPTY_SEPARATOR);
             builder.append(expression);
         }
 
