@@ -13,18 +13,39 @@ import com.mizore.sql.qmaker.utils.SqlStringConstants;
  */
 public abstract class Expression {
 
+    // Expression filter type.
     private ExpressionType expressionType;
+
+    // Expression.
     private String expression;
 
+    /**
+     * Construct expression.
+     * 
+     * @param type
+     *            type of expression.
+     * @param expression
+     *            expression string filter.
+     */
     public Expression(ExpressionType type, String expression) {
         this.expressionType = type;
         this.expression = expression;
     }
 
+    /**
+     * Get the expression type.
+     * 
+     * @return the expression type.
+     */
     public ExpressionType getExpressionType() {
         return expressionType;
     }
 
+    /**
+     * Get the expression filter.
+     * 
+     * @return the expression filter.
+     */
     public String getExpression() {
         return expression;
     }

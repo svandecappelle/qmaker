@@ -102,7 +102,7 @@ public class Table {
 
     @Override
     public String toString() {
-        StringBuffer tableString = new StringBuffer();
+        StringBuilder tableString = new StringBuilder();
 
         if (this.schema != null) {
             tableString.append(schema);

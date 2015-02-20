@@ -60,7 +60,7 @@ public class Query {
      * @return sql representation of query.
      */
     public String asString() {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
 
         buffer.append(SqlStringConstants.SELECT);
         int dataFieldsCount = fields.size();

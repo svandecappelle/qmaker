@@ -1,5 +1,12 @@
 package com.mizore.sql.qmaker.utils;
 
+/**
+ * @author svandecappelle
+ *
+ * @since 0.0.1
+ *
+ *        SQL String values replacement.
+ */
 public class SqlStringConstants {
     public static final String SELECT = "SELECT";
 

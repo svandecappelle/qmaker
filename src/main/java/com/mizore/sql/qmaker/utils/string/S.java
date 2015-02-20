@@ -3,16 +3,39 @@ package com.mizore.sql.qmaker.utils.string;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author svandecappelle
+ *
+ * @since 0.0.1
+ * 
+ *        String replacement tool using templates.
+ */
 public class S {
 
+    // Templates replacement.
     private List<Template> templates;
+
+    // String source to replace templates value.
     private String src;
 
+    /**
+     * Define replacement.
+     * 
+     * @param src
+     *            the String source to replace templates value.
+     */
     public S(String src) {
         this.src = src;
         this.templates = new ArrayList<Template>();
     }
 
+    /**
+     * Define a template to replace with.
+     * 
+     * @param template
+     *            the template to replace.
+     * @return the {@link S} clause.
+     */
     public S template(Template template) {
         this.templates.add(template);
         return this;
