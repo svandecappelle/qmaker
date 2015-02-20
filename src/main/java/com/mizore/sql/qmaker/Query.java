@@ -13,11 +13,8 @@ public class Query {
 	}
 
 	public Field select(String table, String field) {
-		Field fieldOutput = new Field();
-
-		fieldOutput.setTable(table, field);
+		Field fieldOutput = new Field(new Table(table), field);
 		fields.add(fieldOutput);
-
 		return fieldOutput;
 	}
 
@@ -33,16 +30,7 @@ public class Query {
 		int dataFieldsCount = fields.size();
 		for (Field field : fields) {
 			buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
-			buffer.append(field.getTable().getName());
-			buffer.append(DataBaseConstants.DOT_SEPARATOR);
-			buffer.append(field.getName());
-
-			if (field.getAlias() != null) {
-				buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
-				buffer.append(DataBaseConstants.AS);
-				buffer.append(DataBaseConstants.EMPTY_SEPARATOR);
-				buffer.append(field.getAlias().getName());
-			}
+			buffer.append(field.toString());
 
 			dataFieldsCount -= 1;
 			if (dataFieldsCount > 0) {

@@ -19,4 +19,13 @@ public class JoinTest {
 		logger.info(q.asString());
 		Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1 INNER JOIN TABLE_2", q.asString());
 	}
+
+	@Test
+	public void multipleJoin() {
+		Query q = new Query();
+		q.select("TABLE_1", "FIELD").as("ALIAS_1");
+		q.from("TABLE_1").innerJoin("TABLE_2").on("TABLE_1.ID").equalsTo("TABLE_2.TABLE_2_ID");
+		logger.info(q.asString());
+		Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1 INNER JOIN TABLE_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID", q.asString());
+	}
 }

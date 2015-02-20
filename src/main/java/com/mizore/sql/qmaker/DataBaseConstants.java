@@ -15,4 +15,6 @@ public class DataBaseConstants {
 
 	public static final String JOIN = "JOIN";
 
+	public static final Object ON = "ON";
+
 }

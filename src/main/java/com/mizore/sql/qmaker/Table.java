@@ -67,7 +67,7 @@ public class Table {
 
 		if (this.schema != null) {
 			tableString.append(schema);
-			tableString.append(".");
+			tableString.append(DataBaseConstants.DOT_SEPARATOR);
 		}
 
 		tableString.append(name);
