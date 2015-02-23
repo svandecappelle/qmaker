@@ -21,19 +21,13 @@ public class Table {
     private String alias;
 
     /**
-     * Constructor table.
-     */
-    public Table() {
-    }
-
-    /**
      * Table constructor with name.
      * 
      * @param name
      *            table name.
      */
     public Table(String name) {
-        this.name = name;
+        this(null, name);
     }
 
     /**
@@ -64,9 +58,6 @@ public class Table {
      * @return schema name.
      */
     public String getSchema() {
-        if (schema == null) {
-            return "";
-        }
         return schema;
     }
 
@@ -104,12 +95,17 @@ public class Table {
     public String toString() {
         StringBuilder tableString = new StringBuilder();
 
-        if (this.schema != null) {
-            tableString.append(schema);
+        if (this.getSchema() != null) {
+            tableString.append(getSchema());
             tableString.append(SeparatorType.DOT);
         }
 
-        tableString.append(name);
+        if (this.getAs() != null) {
+            tableString.append(SeparatorType.EMPTY);
+            tableString.append(getAs());
+        }
+
+        tableString.append(getName());
 
         return tableString.toString();
     }

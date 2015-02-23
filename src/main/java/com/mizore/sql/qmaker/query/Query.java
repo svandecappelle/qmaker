@@ -42,6 +42,36 @@ public class Query {
     /**
      * Insert select clause.
      * 
+     * @param field
+     *            field name.
+     * @return the field clause associated to the select entered.
+     */
+    public Field select(String field) {
+        Field fieldOutput = new Field(field);
+        fields.add(fieldOutput);
+        return fieldOutput;
+    }
+
+    /**
+     * Insert select clause.
+     * 
+     * @param schema
+     *            schema name.
+     * @param table
+     *            table on select field.
+     * @param field
+     *            field name.
+     * @return the field clause associated to the select entered.
+     */
+    public Field select(String schema, String table, String field) {
+        Field fieldOutput = new Field(new Table(schema, table), field);
+        fields.add(fieldOutput);
+        return fieldOutput;
+    }
+
+    /**
+     * Insert select clause.
+     * 
      * @param table
      *            table on select field.
      * @param field
@@ -63,6 +93,32 @@ public class Query {
      */
     public From from(String table) {
         this.from = new From(table);
+        return from;
+    }
+
+    /**
+     * Insert from clause.
+     * 
+     * @param query
+     *            sub-query clause from.
+     * @return the from clause.
+     */
+    public From from(Query query) {
+        this.from = new From(query);
+        return from;
+    }
+
+    /**
+     * Insert from clause.
+     *
+     * @param scema
+     *            Schema name.
+     * @param table
+     *            starting table clause.
+     * @return the from clause.
+     */
+    public From from(String schema, String table) {
+        this.from = new From(schema, table);
         return from;
     }
 
@@ -95,7 +151,7 @@ public class Query {
         int dataFieldsCount = fields.size();
         for (Field field : fields) {
             buffer.append(SeparatorType.EMPTY);
-            buffer.append(field.toString());
+            buffer.append(field);
 
             dataFieldsCount -= 1;
             if (dataFieldsCount > 0) {
@@ -106,7 +162,7 @@ public class Query {
         buffer.append(SeparatorType.EMPTY);
         buffer.append(SqlClauses.FROM);
         buffer.append(SeparatorType.EMPTY);
-        buffer.append(from.toString());
+        buffer.append(from);
 
         if (alias != null) {
             buffer.append(SeparatorType.RIGHT_PARENTHESIS);

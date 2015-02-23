@@ -29,7 +29,19 @@ public class From {
      *            table name.
      */
     public From(String table) {
-        this.table = new Table(table);
+        this(null, table);
+    }
+
+    /**
+     * From with table initializer.
+     * 
+     * @param schema
+     *            Schema name.
+     * @param table
+     *            table name.
+     */
+    public From(String schema, String table) {
+        this.table = new Table(schema, table);
         this.joins = new ListJoin<Join>();
     }
 
@@ -110,9 +122,16 @@ public class From {
         S buildedString = null;
         if (this.isQuery()) {
             if (this.joins != null) {
-                buildedString = new S("({{table}}){{alias}}{{joins}}").template(new Template().c("table", this.table).c("alias", this.table.getAs()).c("joins", this.joins));
-            } else {
+                if (this.table.getAs() != null) {
+                    buildedString = new S("({{table}}){{alias}}{{joins}}").template(new Template().c("table", this.table).c("alias", this.table.getAs()).c("joins", this.joins));
+                } else {
+                    buildedString = new S("({{table}}){{joins}}").template(new Template().c("table", this.table).c("joins", this.joins));
+                }
+
+            } else if (this.table.getAs() != null) {
                 buildedString = new S("({{table}}){{alias}}").template(new Template().c("table", this.table).c("alias", this.table.getAs()));
+            } else {
+                buildedString = new S("({{table}})").template(new Template().c("table", this.table));
             }
         } else {
             if (this.alias != null) {
@@ -129,6 +148,7 @@ public class From {
                 }
             }
         }
+        
         return buildedString.toString();
     }
 }
