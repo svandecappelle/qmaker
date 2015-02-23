@@ -1,7 +1,7 @@
 package com.mizore.sql.qmaker.query;
 
-import com.mizore.sql.qmaker.filters.expressions.EqualsExpression;
-import com.mizore.sql.qmaker.filters.expressions.Expression;
+import com.mizore.sql.qmaker.query.filters.expressions.EqualsExpression;
+import com.mizore.sql.qmaker.query.filters.expressions.Expression;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 
 /**

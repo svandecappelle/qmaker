@@ -1,4 +1,4 @@
-package com.mizore.sql.qmaker.filters.expressions;
+package com.mizore.sql.qmaker.query.filters.expressions;
 
 import com.mizore.sql.qmaker.query.Join;
 import com.mizore.sql.qmaker.utils.SeparatorType;
