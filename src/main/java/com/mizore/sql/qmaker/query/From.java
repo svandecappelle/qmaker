@@ -128,7 +128,7 @@ public class From {
                     buildedString = new S("({{table}}){{joins}}").template(new Template().c("table", this.table).c("joins", this.joins));
                 }
 
-            } else if (this.table.getAs() != null) {
+            } else if (this.alias != null) {
                 buildedString = new S("({{table}}) {{alias}}").template(new Template().c("table", this.table).c("alias", this.alias));
             } else {
                 buildedString = new S("({{table}})").template(new Template().c("table", this.table));
