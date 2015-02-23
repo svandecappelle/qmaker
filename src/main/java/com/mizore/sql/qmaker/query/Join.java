@@ -3,8 +3,8 @@ package com.mizore.sql.qmaker.query;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mizore.sql.qmaker.query.filters.expressions.EqualsExpression;
-import com.mizore.sql.qmaker.query.filters.expressions.Expression;
+import com.mizore.sql.qmaker.filters.Expression;
+import com.mizore.sql.qmaker.filters.EqualsExpression;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
 

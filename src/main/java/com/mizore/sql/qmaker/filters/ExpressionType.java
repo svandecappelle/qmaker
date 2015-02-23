@@ -1,4 +1,4 @@
-package com.mizore.sql.qmaker.query.filters.expressions;
+package com.mizore.sql.qmaker.filters;
 
 /**
  * @author svandecappelle
