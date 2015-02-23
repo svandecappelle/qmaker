@@ -1,6 +1,7 @@
-package com.mizore.sql.qmaker.filters;
+package com.mizore.sql.qmaker.query;
 
-import com.mizore.sql.qmaker.query.Field;
+import com.mizore.sql.qmaker.filters.Expression;
+import com.mizore.sql.qmaker.filters.ExpressionType;
 
 /**
  * @author svandecappelle

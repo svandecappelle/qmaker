@@ -1,6 +1,5 @@
 package com.mizore.sql.qmaker.query;
 
-import com.mizore.sql.qmaker.filters.EqualsExpression;
 import com.mizore.sql.qmaker.filters.Expression;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 
