@@ -18,6 +18,6 @@ public class FromTest {
         q.from("TABLE_1");
         q.as("ALIAS_QUERY");
         logger.info(q.asString());
-        Assert.assertEquals("(SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1) AS ALIAS_QUERY", q.asString());
+        Assert.assertEquals("(SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1) ALIAS_QUERY", q.asString());
     }
 }

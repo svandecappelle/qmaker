@@ -27,7 +27,7 @@ public class SubQueryTest {
         Assert.assertNotNull(fromClause);
 
         logger.info(q.asString());
-        Assert.assertEquals("SELECT ALIAS_1 FROM (SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1)", q);
+        Assert.assertEquals("SELECT ALIAS_1 FROM (SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1)", q.toString());
     }
 
     @Test
@@ -46,7 +46,7 @@ public class SubQueryTest {
         Assert.assertNotNull(fromClause);
 
         logger.info(q.asString());
-        Assert.assertEquals("SELECT SUB_QUERY.ALIAS_1 FROM ((SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1) SUB_QUERY)", q);
+        Assert.assertEquals("SELECT SUB_QUERY.ALIAS_1 FROM ((SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1) SUB_QUERY)", q.toString());
     }
 
     @Test
@@ -64,6 +64,6 @@ public class SubQueryTest {
         Assert.assertNotNull(fromClause);
 
         logger.info(q.asString());
-        Assert.assertEquals("SELECT SUB_QUERY.ALIAS_1 FROM (SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1) SUB_QUERY", q);
+        Assert.assertEquals("SELECT SUB_QUERY.ALIAS_1 FROM (SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1) SUB_QUERY", q.toString());
     }
 }

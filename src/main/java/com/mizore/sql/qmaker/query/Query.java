@@ -141,6 +141,11 @@ public class Query {
      * @return sql representation of query.
      */
     public String asString() {
+        return toString();
+    }
+
+    @Override
+    public String toString() {
         StringBuilder buffer = new StringBuilder();
 
         if (alias != null && !from.isQuery()) {
@@ -174,11 +179,6 @@ public class Query {
         }
 
         return buffer.toString();
-    }
-
-    @Override
-    public String toString() {
-        return asString();
     }
 
     /**
