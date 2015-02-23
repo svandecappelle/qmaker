@@ -3,8 +3,8 @@ package com.mizore.sql.qmaker.query;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mizore.sql.qmaker.utils.QueryFactory;
 import com.mizore.sql.qmaker.utils.SeparatorType;
-import com.mizore.sql.qmaker.utils.SqlClauses;
 
 /**
  * @author svandecappelle
@@ -241,22 +241,9 @@ public class Query {
             buffer.append(SeparatorType.LEFT_PARENTHESIS);
         }
 
-        buffer.append(SqlClauses.SELECT);
-        int dataFieldsCount = fields.size();
-        for (Field field : fields) {
-            buffer.append(SeparatorType.EMPTY);
-            buffer.append(field);
+        buffer.append(QueryFactory.buildSelect(fields));
 
-            dataFieldsCount -= 1;
-            if (dataFieldsCount > 0) {
-                buffer.append(SeparatorType.FIELD);
-            }
-        }
-
-        buffer.append(SeparatorType.EMPTY);
-        buffer.append(SqlClauses.FROM);
-        buffer.append(SeparatorType.EMPTY);
-        buffer.append(from);
+        buffer.append(QueryFactory.buildFrom(from));
 
         if (alias != null && !from.isQuery()) {
             buffer.append(SeparatorType.RIGHT_PARENTHESIS);
@@ -267,23 +254,7 @@ public class Query {
             buffer.append(alias);
         }
 
-        if (!restrictions.isEmpty()) {
-            buffer.append(SeparatorType.EMPTY);
-            buffer.append(SqlClauses.WHERE);
-            buffer.append(SeparatorType.EMPTY);
-        }
-
-        int restrictionsCount = restrictions.size();
-        for (SqlRestriction restriction : restrictions) {
-            buffer.append(restriction);
-
-            restrictionsCount -= 1;
-            if (restrictionsCount > 0) {
-                buffer.append(SeparatorType.EMPTY);
-                buffer.append(SeparatorType.AND);
-                buffer.append(SeparatorType.EMPTY);
-            }
-        }
+        buffer.append(QueryFactory.buildWhere(restrictions));
 
         return buffer.toString();
     }
