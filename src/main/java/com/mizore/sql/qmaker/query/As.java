@@ -19,7 +19,7 @@ public class As {
      *            alias name.
      */
     public As(String name) {
-        this.name = name;
+        this.setName(name);
     }
 
     /**

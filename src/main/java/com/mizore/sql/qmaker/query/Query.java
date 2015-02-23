@@ -143,7 +143,7 @@ public class Query {
     public String asString() {
         StringBuilder buffer = new StringBuilder();
 
-        if (alias != null) {
+        if (alias != null && !from.isQuery()) {
             buffer.append(SeparatorType.LEFT_PARENTHESIS);
         }
 
@@ -164,10 +164,11 @@ public class Query {
         buffer.append(SeparatorType.EMPTY);
         buffer.append(from);
 
-        if (alias != null) {
+        if (alias != null && !from.isQuery()) {
             buffer.append(SeparatorType.RIGHT_PARENTHESIS);
             buffer.append(SeparatorType.EMPTY);
-            buffer.append(SqlClauses.AS);
+            buffer.append(alias);
+        } else if (alias != null) {
             buffer.append(SeparatorType.EMPTY);
             buffer.append(alias);
         }

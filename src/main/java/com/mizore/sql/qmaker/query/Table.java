@@ -95,7 +95,7 @@ public class Table {
     public String toString() {
         StringBuilder tableString = new StringBuilder();
 
-        if (this.getSchema() != null) {
+        if (this.hasSchema()) {
             tableString.append(getSchema());
             tableString.append(SeparatorType.DOT);
         }
