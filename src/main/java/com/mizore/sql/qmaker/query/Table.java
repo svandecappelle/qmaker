@@ -99,13 +99,16 @@ public class Table {
             tableString.append(getSchema());
             tableString.append(SeparatorType.DOT);
         }
+        if (this.getAs() != null) {
+            tableString.append(SeparatorType.LEFT_PARENTHESIS);
+        }
+        tableString.append(getName());
 
         if (this.getAs() != null) {
+            tableString.append(SeparatorType.RIGHT_PARENTHESIS);
             tableString.append(SeparatorType.EMPTY);
             tableString.append(getAs());
         }
-
-        tableString.append(getName());
 
         return tableString.toString();
     }

@@ -122,6 +122,17 @@ public abstract class Join {
     }
 
     /**
+     * Set an alias on join.
+     * 
+     * @param aliasJoinName
+     *            alias name.
+     */
+    public Join as(String aliasJoinName) {
+        this.table.as(aliasJoinName);
+        return this;
+    }
+
+    /**
      * Get the SQL Join type.
      * 
      * @return the join type.

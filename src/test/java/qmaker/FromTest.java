@@ -12,6 +12,15 @@ public class FromTest {
     private final Logger logger = Logger.getLogger("From");
 
     @Test
+    public void simpleTest() {
+        Query q = new Query();
+        q.select("TABLE_1", "FIELD");
+        q.from("TABLE_1");
+        logger.info(q.asString());
+        Assert.assertEquals("SELECT TABLE_1.FIELD FROM TABLE_1", q.asString());
+    }
+
+    @Test
     public void aliasTest() {
         Query q = new Query();
         q.select("TABLE_1", "FIELD").as("ALIAS_1");
@@ -19,5 +28,14 @@ public class FromTest {
         q.as("ALIAS_QUERY");
         logger.info(q.asString());
         Assert.assertEquals("(SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1) ALIAS_QUERY", q.asString());
+    }
+
+    @Test
+    public void aliasFromTest() {
+        Query q = new Query();
+        q.select("TABLE_1", "FIELD").as("ALIAS_1");
+        q.from("TABLE_1").as("ALIAS_QUERY");
+        logger.info(q.asString());
+        Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM (TABLE_1) ALIAS_QUERY", q.asString());
     }
 }
