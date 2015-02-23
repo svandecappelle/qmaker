@@ -3,7 +3,6 @@ package com.mizore.sql.qmaker.query;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mizore.sql.qmaker.utils.QueryFactory;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 
 /**

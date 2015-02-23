@@ -1,10 +1,9 @@
-package com.mizore.sql.qmaker.utils;
+package com.mizore.sql.qmaker.query;
 
 import java.util.Collection;
 
-import com.mizore.sql.qmaker.query.Field;
-import com.mizore.sql.qmaker.query.From;
-import com.mizore.sql.qmaker.query.SqlRestriction;
+import com.mizore.sql.qmaker.utils.SeparatorType;
+import com.mizore.sql.qmaker.utils.SqlClauses;
 
 /**
  * @author svandecappelle
