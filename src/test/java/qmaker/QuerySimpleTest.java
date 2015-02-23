@@ -19,6 +19,15 @@ public class QuerySimpleTest {
 		logger.info(q.asString());
 		Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1", q.asString());
 	}
+	
+	@Test
+    public void simpleFullWithSchemaSelect() {
+        Query q = new Query();
+        q.select("SCHEMA", "TABLE_1", "FIELD").as("ALIAS_1");
+        q.from("SCHEMA", "TABLE_1");
+        logger.info(q.asString());
+        Assert.assertEquals("SELECT SCHEMA.TABLE_1.FIELD AS ALIAS_1 FROM SCHEMA.TABLE_1", q.asString());
+    }
 
 	@Test
 	public void simpleSelect() {
