@@ -8,7 +8,7 @@ package com.mizore.sql.qmaker.utils;
  *        Separator SQL type.
  */
 public enum SeparatorType {
-    EMPTY(" "), FIELD(","), DOT("."), LEFT_PARENTHESIS("("), RIGHT_PARENTHESIS(")");
+    EMPTY(" "), FIELD(","), DOT("."), LEFT_PARENTHESIS("("), RIGHT_PARENTHESIS(")"), AND("AND");
 
     private String sqlSeparator;
 

@@ -1,5 +1,7 @@
 package com.mizore.sql.qmaker.filters.expressions;
 
+import com.mizore.sql.qmaker.query.Field;
+
 /**
  * @author svandecappelle
  *
@@ -17,6 +19,16 @@ public class EqualsExpression extends Expression {
      */
     public EqualsExpression(String expression) {
         super(ExpressionType.EQUALS, expression);
+    }
+
+    /**
+     * Create an equals expression filter.
+     * 
+     * @param field
+     *            equals expression filter on value.
+     */
+    public EqualsExpression(Field field) {
+        super(ExpressionType.EQUALS, field.toString());
     }
 
 }

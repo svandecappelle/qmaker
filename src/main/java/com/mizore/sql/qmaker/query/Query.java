@@ -13,14 +13,6 @@ import com.mizore.sql.qmaker.utils.SqlClauses;
  *
  *        Make a query.
  */
-/**
- * @author svandecappelle
- *
- */
-/**
- * @author svandecappelle
- *
- */
 public class Query {
 
     // fields on select.
@@ -32,11 +24,14 @@ public class Query {
     // Query alias.
     private String alias;
 
+    private List<SqlRestriction> restrictions;
+
     /**
      * Create a query object.
      */
     public Query() {
         fields = new ArrayList<Field>();
+        restrictions = new ArrayList<SqlRestriction>();
     }
 
     /**
@@ -144,6 +139,100 @@ public class Query {
         return toString();
     }
 
+    /**
+     * Add alias on query.
+     * 
+     * @param alias
+     *            alias name.
+     */
+    public void as(String alias) {
+        this.alias = alias;
+    }
+
+    /**
+     * Add an sql Where restrition clause to the query.
+     * 
+     * @param expression
+     *            Expression filter.
+     * @return the sql restriction injected clause.
+     */
+    public SqlRestriction where(String expression) {
+        SqlRestriction restriction = new SqlRestriction(new Field(expression), this);
+        this.restrictions.add(restriction);
+        return restriction;
+    }
+
+    /**
+     * Add an sql Where restrition clause to the query.
+     * 
+     * @param table
+     *            table on wich clause is about.
+     * @param field
+     *            fieldname.
+     * @return the sql restriction injected clause.
+     */
+    public SqlRestriction where(String table, String field) {
+        SqlRestriction restriction = new SqlRestriction(new Field(new Table(table), field), this);
+        this.restrictions.add(restriction);
+        return restriction;
+    }
+
+    /**
+     * Add an sql Where restrition clause to the query.
+     * 
+     * @param schema
+     *            the SQL schema of table.
+     * @param table
+     *            table on wich clause is about.
+     * @param field
+     *            fieldname.
+     * @return the sql restriction injected clause.
+     */
+    public SqlRestriction where(String schema, String table, String field) {
+        SqlRestriction restriction = new SqlRestriction(new Field(new Table(schema, table), field), this);
+        this.restrictions.add(restriction);
+        return restriction;
+    }
+
+    /**
+     * Add an sql Where restrition clause to the query.
+     * 
+     * @param field
+     *            fieldname.
+     * @return the sql restriction injected clause.
+     */
+    public SqlRestriction and(String expression) {
+        return this.where(expression);
+    }
+
+    /**
+     * Add an sql Where restrition clause to the query.
+     * 
+     * @param table
+     *            table on wich clause is about.
+     * @param field
+     *            fieldname.
+     * @return the sql restriction injected clause.
+     */
+    public SqlRestriction and(String table, String field) {
+        return this.where(table, field);
+    }
+
+    /**
+     * Add an sql Where restrition clause to the query.
+     * 
+     * @param schema
+     *            the SQL schema of table.
+     * @param table
+     *            table on wich clause is about.
+     * @param field
+     *            fieldname.
+     * @return the sql restriction injected clause.
+     */
+    public SqlRestriction and(String schema, String table, String field) {
+        return this.where(schema, table, field);
+    }
+
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();
@@ -178,16 +267,24 @@ public class Query {
             buffer.append(alias);
         }
 
-        return buffer.toString();
-    }
+        if (!restrictions.isEmpty()) {
+            buffer.append(SeparatorType.EMPTY);
+            buffer.append(SqlClauses.WHERE);
+            buffer.append(SeparatorType.EMPTY);
+        }
 
-    /**
-     * Add alias on query.
-     * 
-     * @param alias
-     *            alias name.
-     */
-    public void as(String alias) {
-        this.alias = alias;
+        int restrictionsCount = restrictions.size();
+        for (SqlRestriction restriction : restrictions) {
+            buffer.append(restriction);
+
+            restrictionsCount -= 1;
+            if (restrictionsCount > 0) {
+                buffer.append(SeparatorType.EMPTY);
+                buffer.append(SeparatorType.AND);
+                buffer.append(SeparatorType.EMPTY);
+            }
+        }
+
+        return buffer.toString();
     }
 }
