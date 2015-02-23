@@ -53,6 +53,36 @@ public abstract class Join {
     }
 
     /**
+     * Add join 'On' SQL restriction.
+     * 
+     * @param table
+     *            table name.
+     * @param fieldName
+     *            the field 'on' restriction.
+     * @return The join clause.
+     */
+    public Join on(String table, String fieldName) {
+        this.on = new Field(new Table(table), fieldName);
+        return this;
+    }
+
+    /**
+     * Add join 'On' SQL restriction.
+     * 
+     * @param schema
+     *            schema SQL name.
+     * @param table
+     *            table name.
+     * @param fieldName
+     *            the field 'on' restriction.
+     * @return The join clause.
+     */
+    public Join on(String schema, String table, String fieldName) {
+        this.on = new Field(new Table(schema, table), fieldName);
+        return this;
+    }
+
+    /**
      * Add a Equals to clause.
      * 
      * @param the
@@ -60,6 +90,34 @@ public abstract class Join {
      */
     public From equalsTo(String expression) {
         expressionsJoinFilters.add(new EqualsExpression(expression));
+        return fromClause;
+    }
+
+    /**
+     * Add a Equals to clause.
+     * 
+     * @param table
+     *            table to name.
+     * @param the
+     *            expression right side.
+     */
+    public From equalsTo(String table, String fieldName) {
+        expressionsJoinFilters.add(new EqualsExpression(new Field(new Table(table), fieldName).toString()));
+        return fromClause;
+    }
+
+    /**
+     * Add a Equals to clause.
+     * 
+     * @param schema
+     *            SQL schema name.
+     * @param table
+     *            table to name.
+     * @param the
+     *            expression right side.
+     */
+    public From equalsTo(String schema, String table, String fieldName) {
+        expressionsJoinFilters.add(new EqualsExpression(new Field(new Table(schema, table), fieldName).toString()));
         return fromClause;
     }
 

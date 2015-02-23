@@ -66,4 +66,21 @@ public class SubQueryTest {
         logger.info(q.asString());
         Assert.assertEquals("SELECT SUB_QUERY.ALIAS_1 FROM (SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1) SUB_QUERY", q.toString());
     }
+
+    @Test
+    public void subQueryWithJoin() {
+        Query q = new Query();
+        q.select("ALIAS_1");
+
+        // sub-query
+        Query subQuery = new Query();
+        subQuery.select("TABLE_1", "FIELD").as("ALIAS_1");
+        subQuery.from("TABLE_1");
+        logger.info(subQuery.asString());
+
+        q.from(subQuery).as("SUB_QUERY").innerJoin("TABLE_2").on("TABLE_2", "FIELD_ID_TABLE_1").equalsTo("SUB_QUERY", "ALIAS_1");
+
+        logger.info(q.asString());
+        Assert.assertEquals("SELECT ALIAS_1 FROM (SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1) SUB_QUERY INNER JOIN TABLE_2 ON TABLE_2.FIELD_ID_TABLE_1 = SUB_QUERY.ALIAS_1", q.toString());
+    }
 }
