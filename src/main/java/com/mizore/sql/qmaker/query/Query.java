@@ -129,6 +129,21 @@ public class Query {
         }
     }
 
+
+    /**
+     * Add an inner join to query.
+     * 
+     * @return inner join SQL clause added to query.
+     */
+    public Join join(JoinType type, String table) {
+        if (from != null) {
+            return from.join(type, table);
+        } else {
+            throw new IllegalQueryFormedException("SQl Join can only be added to and existing from clause. Check you've added from SQL clause on Query.");
+        }
+    }
+
+    
     /**
      * Convert to sql string.
      * 

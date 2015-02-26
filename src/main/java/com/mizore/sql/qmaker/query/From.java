@@ -151,4 +151,24 @@ public class From {
 
         return buildedString.toString();
     }
+
+    /**
+     * Insert generic Join clause.
+     * 
+     * @param type
+     *            type of join.
+     * @param table
+     *            the table on wich the join must be done.
+     * @return the join clause created.
+     */
+    public Join join(final JoinType type, String table) {
+        Join join = new Join(table, this) {
+            @Override
+            public JoinType getType() {
+                return type;
+            }
+        };
+        this.joins.add(join);
+        return join;
+    }
 }
