@@ -6,12 +6,31 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>QueryMaker</name>
 	<description>An SQL query maker in java objects</description>
+
+	<distributionManagement>
+		<repository>
+			<id>${repo-id}</id>
+			<name>${repo-name}</name>
+			<url>${repo-release-url}</url>
+		</repository>
+		<snapshotRepository>
+			<id>${repo-id}</id>
+			<name>${repo-name}</name>
+			<url>${repo-snapshot-url}</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.10.0</version>
 		</dependency>
 	</dependencies>
 
