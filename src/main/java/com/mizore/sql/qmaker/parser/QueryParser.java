@@ -47,6 +47,9 @@ public class QueryParser extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
+        // Nothing to do at now
+        // Could be useful to parse multiples query. If yes.. do that feature
+        // here.
     }
 
     /**
