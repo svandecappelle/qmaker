@@ -66,6 +66,18 @@ public class Query {
     /**
      * Insert select clause.
      * 
+     * @param field
+     *            field object.
+     * @return the field clause associated to the select entered.
+     */
+    public Field select(Field field) {
+        fields.add(field);
+        return field;
+    }
+
+    /**
+     * Insert select clause.
+     * 
      * @param table
      *            table on select field.
      * @param field
@@ -129,7 +141,6 @@ public class Query {
         }
     }
 
-
     /**
      * Add an inner join to query.
      * 
@@ -143,7 +154,6 @@ public class Query {
         }
     }
 
-    
     /**
      * Convert to sql string.
      * 
@@ -245,6 +255,42 @@ public class Query {
      */
     public SqlRestriction and(String schema, String table, String field) {
         return this.where(schema, table, field);
+    }
+
+    /**
+     * Add a simple groupBy SQL clause field.
+     * 
+     * @param fieldName
+     *            the field to group by.
+     */
+    public void groupBy(String fieldName) {
+        this.groupBy(null, null, fieldName);
+    }
+
+    /**
+     * Add a group by with table name.
+     * 
+     * @param tableName
+     *            table.
+     * @param fieldName
+     *            field.
+     */
+    public void groupBy(String tableName, String fieldName) {
+        this.groupBy(null, tableName, fieldName);
+    }
+
+    /**
+     * Add a group by with table and schema.
+     * 
+     * @param schemaName
+     *            schema name.
+     * @param tableName
+     *            table.
+     * @param fieldName
+     *            field.
+     */
+    public void groupBy(String schemaName, String tableName, String fieldName) {
+        this.from.groupBy(schemaName, tableName, fieldName);
     }
 
     @Override

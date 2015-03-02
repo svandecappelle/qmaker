@@ -22,7 +22,6 @@ public class ListJoin<T extends Join> extends ArrayList<T> {
     /**
      * Convert all join into SQL String value clause.
      * 
-     * @param string
      * @return
      */
     @Override

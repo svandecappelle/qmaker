@@ -18,6 +18,9 @@ public class From {
     // sql join clauses.
     private ListJoin<Join> joins;
 
+    // sql group by clauses.
+    private ListGroupBy groupBy;
+
     // true if from clause is an sub-query clause.
     private boolean query = false;
     private String alias;
@@ -119,37 +122,30 @@ public class From {
 
     @Override
     public String toString() {
-        S buildedString = null;
-        if (this.isQuery()) {
-            if (this.joins != null) {
-                if (this.alias != null) {
-                    buildedString = new S("({{table}}) {{alias}}{{joins}}").template(new Template().c("table", this.table).c("alias", this.alias).c("joins", this.joins));
-                } else {
-                    buildedString = new S("({{table}}){{joins}}").template(new Template().c("table", this.table).c("joins", this.joins));
-                }
+        StringBuilder fromClauseGenerated = new StringBuilder();
 
-            } else if (this.alias != null) {
-                buildedString = new S("({{table}}) {{alias}}").template(new Template().c("table", this.table).c("alias", this.alias));
-            } else {
-                buildedString = new S("({{table}})").template(new Template().c("table", this.table));
-            }
+        // from clause
+        if (this.isQuery() || this.alias != null) {
+            fromClauseGenerated.append(new S("({{table}})").template(new Template().c("table", this.table)));
         } else {
-            if (this.alias != null) {
-                if (this.joins != null) {
-                    buildedString = new S("({{table}}) {{alias}}{{joins}}").template(new Template().c("table", this.table).c("alias", this.alias).c("joins", this.joins));
-                } else {
-                    buildedString = new S("({{table}}) {{alias}}").template(new Template().c("table", this.table).c("alias", this.alias));
-                }
-            } else {
-                if (this.joins != null) {
-                    buildedString = new S("{{table}}{{joins}}").template(new Template().c("table", this.table).c("joins", this.joins));
-                } else {
-                    buildedString = new S("{{table}}").template(new Template().c("table", this.table));
-                }
-            }
+            fromClauseGenerated.append(new S("{{table}}").template(new Template().c("table", this.table)));
         }
 
-        return buildedString.toString();
+        // alias clause
+        if (this.alias != null) {
+            fromClauseGenerated.append(new S(" {{alias}}").template(new Template().c("alias", this.alias)));
+        }
+
+        // joins clauses
+        if (this.joins != null) {
+            fromClauseGenerated.append(new S("{{joins}}").template(new Template().c("joins", this.joins)));
+        }
+
+        if (this.groupBy != null) {
+            fromClauseGenerated.append(new S(" {{groupBy}}").template(new Template().c("groupBy", this.groupBy)));
+        }
+
+        return fromClauseGenerated.toString();
     }
 
     /**
@@ -170,5 +166,47 @@ public class From {
         };
         this.joins.add(join);
         return join;
+    }
+
+    /**
+     * Add a simple groupBy SQL clause field.
+     * 
+     * @param fieldName
+     *            the field to group by.
+     */
+    public GroupBy groupBy(String fieldName) {
+        return this.groupBy(null, null, fieldName);
+    }
+
+    /**
+     * Add a group by with table name.
+     * 
+     * @param tableName
+     *            table.
+     * @param fieldName
+     *            field.
+     */
+    public GroupBy groupBy(String tableName, String fieldName) {
+        return this.groupBy(null, tableName, fieldName);
+    }
+
+    /**
+     * Add a group by with table and schema.
+     * 
+     * @param schemaName
+     *            schema name.
+     * @param tableName
+     *            table.
+     * @param fieldName
+     *            field.
+     */
+    public GroupBy groupBy(String schemaName, String tableName, String fieldName) {
+        if (this.groupBy == null) {
+            this.groupBy = new ListGroupBy();
+        }
+        this.groupBy.and(schemaName, tableName, fieldName);
+
+        return this.groupBy;
+
     }
 }

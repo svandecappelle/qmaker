@@ -76,6 +76,15 @@ public class Field {
         return as;
     }
 
+    /**
+     * Get table sql from clause.
+     * 
+     * @return table on wich field is referenced.
+     */
+    protected Table getTable() {
+        return table;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
