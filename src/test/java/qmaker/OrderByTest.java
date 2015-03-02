@@ -16,6 +16,16 @@ public class OrderByTest {
         Query q = new Query();
         q.select("TABLE_1", "FIELD");
         q.from("TABLE_1");
+        q.orderBy("TABLE_1", "FIELD").asc();
+        logger.info(q.asString());
+        Assert.assertEquals("SELECT TABLE_1.FIELD FROM TABLE_1 ORDER BY TABLE_1.FIELD ASC", q.asString());
+    }
+    
+    @Test
+    public void simpleFieldsTablesOrderBy() {
+        Query q = new Query();
+        q.select("TABLE_1", "FIELD");
+        q.from("TABLE_1");
         q.orderBy("FIELD").asc();
         logger.info(q.asString());
         Assert.assertEquals("SELECT TABLE_1.FIELD FROM TABLE_1 ORDER BY FIELD ASC", q.asString());
