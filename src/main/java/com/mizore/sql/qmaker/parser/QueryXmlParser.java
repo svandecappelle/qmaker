@@ -1,6 +1,8 @@
 package com.mizore.sql.qmaker.parser;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -10,10 +12,14 @@ import org.xml.sax.SAXException;
 
 public class QueryXmlParser {
 
-    public QueryXmlParser() {
+    private static final Logger LOGGER = Logger.getLogger("QueryXmlParser");
+    private String fileLocation;
+
+    public QueryXmlParser(String fileLocation) {
+        this.fileLocation = fileLocation;
     }
 
-    private void parseDocument() {
+    public QueryParser parseDocument() {
 
         // get a factory
         SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -24,22 +30,16 @@ public class QueryXmlParser {
 
             // parse the file and also register this class for call backs
             QueryParser parser = new QueryParser();
-            sp.parse("/home/svandecappelle/sheets.xml", parser);
+            sp.parse(fileLocation, parser);
+            return parser;
 
-            System.out.println(parser.getQuery());
-            
         } catch (SAXException se) {
-            se.printStackTrace();
+            LOGGER.log(Level.SEVERE, "SAXException parsing query file", se);
         } catch (ParserConfigurationException pce) {
-            pce.printStackTrace();
+            LOGGER.log(Level.SEVERE, "ParserConfigurationException parsing query file", pce);
         } catch (IOException ie) {
-            ie.printStackTrace();
+            LOGGER.log(Level.SEVERE, "IOException parsing query file", ie);
         }
+        return null;
     }
-
-    public static void main(String[] args) {
-        QueryXmlParser parser = new QueryXmlParser();
-        parser.parseDocument();
-    }
-
 }

@@ -1,0 +1,9 @@
+<query>
+	<select>
+		<field name="'VALUE1' AS KEY1" />
+		<field name="'VALUE2' AS KEY2" />
+	</select>
+	<from>
+		<table name="DUAL" />
+	</from>
+</query>
