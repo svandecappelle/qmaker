@@ -7,9 +7,20 @@ import org.xml.sax.helpers.DefaultHandler;
 import com.mizore.sql.qmaker.query.JoinType;
 import com.mizore.sql.qmaker.query.Query;
 
+/**
+ * @author svandecappelle
+ *
+ * @since 0.0.1
+ *
+ *        An XML query parser. Giving the file the parser returns the query
+ *        found in file. (see documentation for xml file exemple)
+ */
 public class QueryParser extends DefaultHandler {
     private Query query;
 
+    /**
+     * Create a new parser xml.
+     */
     public QueryParser() {
     }
 
@@ -38,6 +49,11 @@ public class QueryParser extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
     }
 
+    /**
+     * Get the last query parsed.
+     * 
+     * @return last query pared.
+     */
     public Query getQuery() {
         return query;
     }

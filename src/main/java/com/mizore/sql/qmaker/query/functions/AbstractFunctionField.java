@@ -1,6 +1,7 @@
-package com.mizore.sql.qmaker.query;
+package com.mizore.sql.qmaker.query.functions;
 
-import com.mizore.sql.qmaker.query.functions.SQLFunctionsClause;
+import com.mizore.sql.qmaker.query.Field;
+import com.mizore.sql.qmaker.query.Table;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
 

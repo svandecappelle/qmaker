@@ -1,6 +1,5 @@
 package com.mizore.sql.qmaker.query.functions;
 
-import com.mizore.sql.qmaker.query.AbstractFunctionField;
 import com.mizore.sql.qmaker.query.Field;
 
 /**
