@@ -11,6 +11,13 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
  */
 public class OrderField extends Field {
 
+    /**
+     * @author svandecappelle
+     *
+     * @since 0.0.1
+     *
+     *        Order possible values.
+     */
     public enum OrderClauses {
         ASC, DESC;
     }

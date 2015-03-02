@@ -94,6 +94,13 @@ public final class QueryFactory {
         return buffer.toString();
     }
 
+    /**
+     * Build order by SQL clause.
+     * 
+     * @param orderBy
+     *            order by clause.
+     * @return the SQL representation of order by clause object.
+     */
     public static String buildOrder(ListOrderBy orderBy) {
         StringBuilder buffer = new StringBuilder();
 
