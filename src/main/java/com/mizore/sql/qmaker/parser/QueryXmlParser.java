@@ -10,15 +10,33 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
+/**
+ * @author svandecappelle
+ *
+ * @since 0.0.1
+ *
+ *        XML parser for Query.
+ */
 public class QueryXmlParser {
 
     private static final Logger LOGGER = Logger.getLogger("QueryXmlParser");
     private String fileLocation;
 
+    /**
+     * Create a new parser.
+     * 
+     * @param fileLocation
+     *            the location file.
+     */
     public QueryXmlParser(String fileLocation) {
         this.fileLocation = fileLocation;
     }
 
+    /**
+     * Parse xml document.
+     * 
+     * @return the query parser after file is parsed.
+     */
     public QueryParser parseDocument() {
 
         // get a factory

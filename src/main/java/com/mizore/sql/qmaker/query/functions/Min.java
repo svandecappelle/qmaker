@@ -1,7 +1,6 @@
 package com.mizore.sql.qmaker.query.functions;
 
 import com.mizore.sql.qmaker.query.AbstractFunctionField;
-import com.mizore.sql.qmaker.query.SQLFieldClause;
 
 /**
  * @author svandecappelle
@@ -50,8 +49,8 @@ public class Min extends AbstractFunctionField {
     }
 
     @Override
-    public SQLFieldClause getType() {
-        return SQLFieldClause.MIN;
+    public SQLFunctionsClause getType() {
+        return SQLFunctionsClause.MIN;
     }
 
 }

@@ -31,6 +31,7 @@ public class QueryParser extends DefaultHandler {
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
+        // Nothing to do here because of dynamic insert into query.
     }
 
     @Override

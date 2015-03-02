@@ -6,6 +6,13 @@ import java.util.Iterator;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
 
+/**
+ * @author svandecappelle
+ *
+ * @since 0.0.1
+ *
+ *        List of all group by fields.
+ */
 public class ListGroupBy extends ArrayList<Field> implements GroupBy {
 
     private static final long serialVersionUID = -7777339847872891579L;
@@ -42,38 +49,17 @@ public class ListGroupBy extends ArrayList<Field> implements GroupBy {
         return groups.toString();
     }
 
-    /**
-     * Add a simple groupBy SQL clause field.
-     * 
-     * @param fieldName
-     *            the field to group by.
-     */
+    @Override
     public GroupBy and(String fieldName) {
         return this.and(null, null, fieldName);
     }
 
-    /**
-     * Add a group by with table name.
-     * 
-     * @param tableName
-     *            table.
-     * @param fieldName
-     *            field.
-     */
+    @Override
     public GroupBy and(String tableName, String fieldName) {
         return this.and(null, tableName, fieldName);
     }
 
-    /**
-     * Add a group by with table and schema.
-     * 
-     * @param schemaName
-     *            schema name.
-     * @param tableName
-     *            table.
-     * @param fieldName
-     *            field.
-     */
+    @Override
     public GroupBy and(String schemaName, String tableName, String fieldName) {
         if (tableName != null) {
             this.add(new Field(new Table(schemaName, tableName), fieldName));

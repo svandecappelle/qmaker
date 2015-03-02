@@ -1,6 +1,11 @@
-package com.mizore.sql.qmaker.query;
+package com.mizore.sql.qmaker.query.functions;
 
-public enum SQLFieldClause {
+/**
+ * @author svandecappelle
+ *
+ * @since SQL functions clauses.
+ */
+public enum SQLFunctionsClause {
     MIN("MIN"), MAX("MAX"), AVG("AVG"), COALESCE("COALESCE");
 
     private String sqlClause;
@@ -11,7 +16,7 @@ public enum SQLFieldClause {
      * @param sqlClause
      *            SQL replacement clause constant string.
      */
-    private SQLFieldClause(String sqlClause) {
+    private SQLFunctionsClause(String sqlClause) {
         this.sqlClause = sqlClause;
     }
 
