@@ -374,7 +374,11 @@ public class Query {
         if (this.orderBy == null) {
             this.orderBy = new ListOrderBy();
         }
-        return this.orderBy.and(schemaName, tableName, fieldName).asc();
+        if (isAsc) {
+            return this.orderBy.and(schemaName, tableName, fieldName).asc();
+        } else {
+            return this.orderBy.and(schemaName, tableName, fieldName).desc();
+        }
     }
 
     @Override

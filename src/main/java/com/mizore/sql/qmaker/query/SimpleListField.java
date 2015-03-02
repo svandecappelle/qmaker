@@ -17,22 +17,22 @@ import com.mizore.sql.qmaker.utils.SqlClauses;
  * @param <ME>
  *            the type of group.
  */
-public abstract class SimpleListField<ME> extends ArrayList<Field> implements SimpleListClause<ME> {
+public abstract class SimpleListField<T> extends ArrayList<Field> implements SimpleListClause<T> {
 
     private static final long serialVersionUID = 5532586995371645166L;
 
     @Override
-    public ME and(String fieldName) {
+    public T and(String fieldName) {
         return this.and(null, null, fieldName);
     }
 
     @Override
-    public ME and(String tableName, String fieldName) {
+    public T and(String tableName, String fieldName) {
         return this.and(null, tableName, fieldName);
     }
 
     @Override
-    public ME and(String schemaName, String tableName, String fieldName) {
+    public T and(String schemaName, String tableName, String fieldName) {
         if (tableName != null) {
             this.add(new Field(new Table(schemaName, tableName), fieldName));
         } else {
