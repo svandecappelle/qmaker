@@ -25,6 +25,9 @@ public class Query {
 
     private List<SqlRestriction> restrictions;
 
+    // sql order by clauses.
+    private ListOrderBy orderBy;
+
     /**
      * Create a query object.
      */
@@ -293,6 +296,87 @@ public class Query {
         this.from.groupBy(schemaName, tableName, fieldName);
     }
 
+    /**
+     * Add a simple groupBy SQL clause field.
+     * 
+     * @param fieldName
+     *            the field to group by.
+     */
+    public OrderBy orderBy(String fieldName) {
+        return this.orderBy(null, null, fieldName);
+    }
+
+    /**
+     * Add a group by with table name.
+     * 
+     * @param tableName
+     *            table.
+     * @param fieldName
+     *            field.
+     */
+    public OrderBy orderBy(String tableName, String fieldName) {
+        return this.orderBy(null, tableName, fieldName);
+    }
+
+    /**
+     * Add a group by with table and schema.
+     * 
+     * @param schemaName
+     *            schema name.
+     * @param tableName
+     *            table.
+     * @param fieldName
+     *            field.
+     */
+    public OrderBy orderBy(String schemaName, String tableName, String fieldName) {
+        return this.orderBy(schemaName, tableName, fieldName, true);
+    }
+
+    /**
+     * Add a simple groupBy SQL clause field.
+     * 
+     * @param fieldName
+     *            the field to group by.
+     * @param isAsc
+     *            is sorting ascending.
+     */
+    public OrderBy orderBy(String fieldName, boolean isAsc) {
+        return this.orderBy(null, null, fieldName, isAsc);
+    }
+
+    /**
+     * Add a group by with table name.
+     * 
+     * @param tableName
+     *            table.
+     * @param fieldName
+     *            field.
+     * @param isAsc
+     *            is sorting ascending.
+     */
+    public OrderBy orderBy(String tableName, String fieldName, boolean isAsc) {
+        return this.orderBy(null, tableName, fieldName, isAsc);
+    }
+
+    /**
+     * Add a group by with table and schema.
+     * 
+     * @param schemaName
+     *            schema name.
+     * @param tableName
+     *            table.
+     * @param fieldName
+     *            field.
+     * @param isAsc
+     *            is sorting ascending.
+     */
+    public OrderBy orderBy(String schemaName, String tableName, String fieldName, boolean isAsc) {
+        if (this.orderBy == null) {
+            this.orderBy = new ListOrderBy();
+        }
+        return this.orderBy.and(schemaName, tableName, fieldName).asc();
+    }
+
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();
@@ -315,6 +399,10 @@ public class Query {
         }
 
         buffer.append(QueryFactory.buildWhere(restrictions));
+
+        if (orderBy != null) {
+            buffer.append(QueryFactory.buildOrder(orderBy));
+        }
 
         return buffer.toString();
     }

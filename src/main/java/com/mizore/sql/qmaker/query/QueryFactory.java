@@ -93,4 +93,13 @@ public final class QueryFactory {
 
         return buffer.toString();
     }
+
+    public static String buildOrder(ListOrderBy orderBy) {
+        StringBuilder buffer = new StringBuilder();
+
+        buffer.append(SeparatorType.EMPTY);
+        buffer.append(orderBy);
+
+        return buffer.toString();
+    }
 }

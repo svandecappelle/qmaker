@@ -8,7 +8,7 @@ package com.mizore.sql.qmaker.utils;
  *        SQL String values replacement.
  */
 public enum SqlClauses {
-    SELECT("SELECT"), FROM("FROM"), AS("AS"), ON("ON"), JOIN("JOIN"), WHERE("WHERE"), GROUP_BY("GROUP BY");
+    SELECT("SELECT"), FROM("FROM"), AS("AS"), ON("ON"), JOIN("JOIN"), WHERE("WHERE"), GROUP_BY("GROUP BY"), ORDER_BY("ORDER BY");
 
     private String sqlClause;
 
