@@ -4,6 +4,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.mizore.sql.qmaker.query.Field;
 import com.mizore.sql.qmaker.query.JoinType;
 import com.mizore.sql.qmaker.query.Query;
 
@@ -31,7 +32,10 @@ public class QueryParser extends DefaultHandler {
         if (qName.equalsIgnoreCase(XmlParserField.QUERY.name())) {
             query = new Query();
         } else if (qName.equalsIgnoreCase(XmlParserField.FIELD.name())) {
-            query.select(attributes.getValue(XmlParserField.NAME.name().toLowerCase()));
+            Field field = query.select(attributes.getValue(XmlParserField.NAME.name().toLowerCase()));
+            if (attributes.getValue(XmlParserField.AS.name().toLowerCase()) != null) {
+                field.as(attributes.getValue(XmlParserField.AS.name().toLowerCase()));
+            }
         } else if (qName.equalsIgnoreCase(XmlParserField.TABLE.name())) {
             query.from(attributes.getValue(XmlParserField.NAME.name().toLowerCase()));
         } else if (qName.equalsIgnoreCase(XmlParserField.JOIN.name())) {

@@ -91,4 +91,15 @@ public class SqlRestriction {
         return builder.toString();
 
     }
+
+    /**
+     * Add a between clause restriction
+     * 
+     * @param from
+     * @param to
+     */
+    public Query beetween(String from, String to) {
+        expressionFilter = new BetweenExpression(from, to);
+        return query;
+    }
 }

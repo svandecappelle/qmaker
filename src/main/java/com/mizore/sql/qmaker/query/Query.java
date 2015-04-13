@@ -404,6 +404,8 @@ public class Query {
 
         buffer.append(QueryFactory.buildWhere(restrictions));
 
+        buffer.append(QueryFactory.buildGroupBy(this.from));
+
         if (orderBy != null) {
             buffer.append(QueryFactory.buildOrder(orderBy));
         }

@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
+import com.mizore.sql.qmaker.utils.string.S;
+import com.mizore.sql.qmaker.utils.string.Template;
 
 /**
  * @author svandecappelle
@@ -92,6 +94,20 @@ public final class QueryFactory {
         }
 
         return buffer.toString();
+    }
+
+    /**
+     * Build group-by restrictions clauses.
+     * 
+     * @param from
+     *            from clause
+     * @return the SQL representation of Group By statement.
+     */
+    public static String buildGroupBy(From from) {
+        if (from.hasGroupBy()) {
+            return new S(" {{groupBy}}").template(new Template().c("groupBy", from.getGroupBy())).toString();
+        }
+        return "";
     }
 
     /**

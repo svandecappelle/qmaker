@@ -141,10 +141,6 @@ public class From {
             fromClauseGenerated.append(new S("{{joins}}").template(new Template().c("joins", this.joins)));
         }
 
-        if (this.groupBy != null) {
-            fromClauseGenerated.append(new S(" {{groupBy}}").template(new Template().c("groupBy", this.groupBy)));
-        }
-
         return fromClauseGenerated.toString();
     }
 
@@ -191,6 +187,15 @@ public class From {
     }
 
     /**
+     * Get the group by element.
+     * 
+     * @return the group by element.
+     */
+    protected ListGroupBy getGroupBy() {
+        return groupBy;
+    }
+
+    /**
      * Add a group by with table and schema.
      * 
      * @param schemaName
@@ -208,5 +213,9 @@ public class From {
 
         return this.groupBy;
 
+    }
+
+    public boolean hasGroupBy() {
+        return groupBy != null;
     }
 }

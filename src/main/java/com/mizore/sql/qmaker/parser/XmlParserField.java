@@ -8,5 +8,5 @@ package com.mizore.sql.qmaker.parser;
  *        XML Field need to be parsed. (there are all lower-case parsed)
  */
 public enum XmlParserField {
-    QUERY, FIELD, NAME, TABLE, JOIN, TYPE, ON, EQUALS
+    QUERY, FIELD, NAME, TABLE, JOIN, TYPE, ON, EQUALS, AS
 }

@@ -50,6 +50,19 @@ public class GroupByTest {
         q.groupBy("TABLE_1", "ALIAS_2");
         Assert.assertEquals("SELECT AVG(TABLE_1.FIELD) AS ALIAS_1, TABLE_1.FIELD_2 AS ALIAS_2 FROM TABLE_1 GROUP BY TABLE_1.ALIAS_2", q.toString());
     }
+    
+    @Test
+    public void withwhereFieldsGroupBy() {
+        Query q = new Query();
+        q.select("TABLE_1", "FIELD").as("ALIAS_1");
+        q.select("TABLE_1", "FIELD_2").as("ALIAS_2");
+
+        q.from("TABLE_1").groupBy("TABLE_1", "ALIAS_1");
+        q.where("FIELD").equalsTo("1");
+        q.where("FIELD2").equalsTo("12");
+        
+        Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1, TABLE_1.FIELD_2 AS ALIAS_2 FROM TABLE_1 WHERE FIELD = 1 AND FIELD2 = 12 GROUP BY TABLE_1.ALIAS_1", q.toString());
+    }
 
     @Test
     public void complexModifier() {

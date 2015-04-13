@@ -27,6 +27,25 @@ public abstract class Expression {
      * @param expression
      *            expression string filter.
      */
+    public Expression(ExpressionType type, String sqlExpressionOne, String sqlExpressionTwo) {
+        this.expressionType = type;
+        StringBuilder expressionAnd = new StringBuilder();
+        expressionAnd.append(sqlExpressionOne);
+        expressionAnd.append(SeparatorType.EMPTY);
+        expressionAnd.append(SeparatorType.AND);
+        expressionAnd.append(SeparatorType.EMPTY);
+        expressionAnd.append(sqlExpressionTwo);
+        this.sqlExpression = expressionAnd.toString();
+    }
+
+    /**
+     * Construct expression.
+     * 
+     * @param type
+     *            type of expression.
+     * @param expression
+     *            expression string filter.
+     */
     public Expression(ExpressionType type, String sqlExpression) {
         this.expressionType = type;
         this.sqlExpression = sqlExpression;
