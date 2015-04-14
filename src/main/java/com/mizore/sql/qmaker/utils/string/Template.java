@@ -16,7 +16,7 @@ public class Template implements Serializable {
     private static final long serialVersionUID = 5869197855002571026L;
 
     // Substitutes.
-    private List<Subsitute> substitutes;
+    private ArrayList<Subsitute> substitutes;
 
     /**
      * Constructor.

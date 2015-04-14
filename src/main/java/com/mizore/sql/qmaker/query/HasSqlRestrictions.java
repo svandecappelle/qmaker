@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class HasSqlRestrictions<T extends IsClause> implements Serializable{
+public abstract class HasSqlRestrictions<T extends IsClause> implements Serializable {
 
     private static final long serialVersionUID = -3619291759010785491L;
 
-    private List<SqlRestriction<T>> restrictions;
+    private ArrayList<SqlRestriction<T>> restrictions;
 
     public HasSqlRestrictions() {
         setRestrictions(new ArrayList<SqlRestriction<T>>());
@@ -104,7 +104,7 @@ public abstract class HasSqlRestrictions<T extends IsClause> implements Serializ
         return restrictions;
     }
 
-    protected void setRestrictions(List<SqlRestriction<T>> restrictions) {
+    protected void setRestrictions(ArrayList<SqlRestriction<T>> restrictions) {
         this.restrictions = restrictions;
     }
 

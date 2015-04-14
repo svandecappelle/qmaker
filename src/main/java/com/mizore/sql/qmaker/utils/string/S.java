@@ -2,7 +2,6 @@ package com.mizore.sql.qmaker.utils.string;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author svandecappelle
@@ -16,7 +15,7 @@ public class S implements Serializable {
     private static final long serialVersionUID = 3411204568827409780L;
 
     // Templates replacement.
-    private List<Template> templates;
+    private ArrayList<Template> templates;
 
     // String source to replace templates value.
     private String src;

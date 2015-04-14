@@ -2,7 +2,6 @@ package com.mizore.sql.qmaker.query;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.mizore.sql.qmaker.filters.Expression;
 import com.mizore.sql.qmaker.utils.SeparatorType;
@@ -26,7 +25,7 @@ public abstract class Join implements Serializable {
     private Field on;
 
     // Expression filters.
-    private List<Expression> expressionsJoinFilters;
+    private ArrayList<Expression> expressionsJoinFilters;
 
     private From fromClause;
 
