@@ -1,5 +1,6 @@
 package com.mizore.sql.qmaker.query;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,9 @@ import com.mizore.sql.qmaker.utils.SqlClauses;
  *
  *        SQL Join abstract. Need to make inner/left/outer/right SQL join.
  */
-public abstract class Join {
+public abstract class Join implements Serializable {
+
+    private static final long serialVersionUID = 4711711529500657659L;
 
     // Table on which join target.
     private Table table;

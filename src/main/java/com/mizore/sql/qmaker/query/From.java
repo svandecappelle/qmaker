@@ -1,5 +1,7 @@
 package com.mizore.sql.qmaker.query;
 
+import java.io.Serializable;
+
 import com.mizore.sql.qmaker.utils.string.S;
 import com.mizore.sql.qmaker.utils.string.Template;
 
@@ -10,7 +12,9 @@ import com.mizore.sql.qmaker.utils.string.Template;
  *
  *        From sql query clause.
  */
-public class From {
+public class From implements Serializable {
+
+    private static final long serialVersionUID = 6204409078510901660L;
 
     // table of from clause.
     private Table table;
@@ -155,6 +159,8 @@ public class From {
      */
     public Join join(final JoinType type, String table) {
         Join join = new Join(table, this) {
+            private static final long serialVersionUID = 7089498383994125957L;
+
             @Override
             public JoinType getType() {
                 return type;

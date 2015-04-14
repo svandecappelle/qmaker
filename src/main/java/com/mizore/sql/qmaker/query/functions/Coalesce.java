@@ -11,6 +11,8 @@ import com.mizore.sql.qmaker.query.Field;
  */
 public class Coalesce extends AbstractFunctionField {
 
+    private static final long serialVersionUID = 4373089601696548391L;
+
     /**
      * Constructor Coalesce function selector.
      * 

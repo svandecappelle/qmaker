@@ -1,9 +1,12 @@
 package com.mizore.sql.qmaker.query;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class HasSqlRestrictions<T extends IsClause> {
+public abstract class HasSqlRestrictions<T extends IsClause> implements Serializable{
+
+    private static final long serialVersionUID = -3619291759010785491L;
 
     private List<SqlRestriction<T>> restrictions;
 

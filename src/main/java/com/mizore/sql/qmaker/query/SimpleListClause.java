@@ -1,5 +1,7 @@
 package com.mizore.sql.qmaker.query;
 
+import java.io.Serializable;
+
 /**
  * @author svandecappelle
  * 
@@ -7,7 +9,7 @@ package com.mizore.sql.qmaker.query;
  * 
  *        SimpleList clause interface.
  */
-public interface SimpleListClause<T> {
+public interface SimpleListClause<T> extends Serializable {
 
     /**
      * Add a list element SQL clause field.

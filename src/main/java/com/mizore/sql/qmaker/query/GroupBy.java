@@ -1,5 +1,6 @@
 package com.mizore.sql.qmaker.query;
 
+
 /**
  * @author svandecappelle
  *

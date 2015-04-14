@@ -12,6 +12,8 @@ import com.mizore.sql.qmaker.filters.ExpressionType;
  */
 public class EqualsExpression extends Expression {
 
+    private static final long serialVersionUID = 8160848547816203656L;
+
     /**
      * Create an equals expression filter.
      * 

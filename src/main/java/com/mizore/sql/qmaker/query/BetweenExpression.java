@@ -11,6 +11,8 @@ import com.mizore.sql.qmaker.filters.ExpressionType;
  */
 public class BetweenExpression extends Expression {
 
+    private static final long serialVersionUID = 2027642895005368932L;
+
     /**
      * Create a between expression filter.
      * 

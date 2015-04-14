@@ -1,5 +1,7 @@
 package com.mizore.sql.qmaker.query;
 
+import java.io.Serializable;
+
 /**
  * @author svandecappelle
  *
@@ -7,7 +9,9 @@ package com.mizore.sql.qmaker.query;
  *
  *        SQL alias object.
  */
-public class As {
+public class As implements Serializable{
+
+    private static final long serialVersionUID = 3162884835394294222L;
 
     // Alias name.
     private String name;

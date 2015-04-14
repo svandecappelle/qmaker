@@ -10,6 +10,8 @@ package com.mizore.sql.qmaker.query.functions;
  */
 public class Avg extends AbstractFunctionField {
 
+    private static final long serialVersionUID = 7013818184505677093L;
+
     /**
      * Constructor Avg function selector.
      * 

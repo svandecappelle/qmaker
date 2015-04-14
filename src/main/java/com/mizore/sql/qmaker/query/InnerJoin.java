@@ -9,6 +9,8 @@ package com.mizore.sql.qmaker.query;
  */
 public class InnerJoin extends Join {
 
+    private static final long serialVersionUID = 3341346686857707382L;
+
     /**
      * Create a join.
      * 

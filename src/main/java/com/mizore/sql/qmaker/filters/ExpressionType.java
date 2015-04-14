@@ -8,7 +8,12 @@ package com.mizore.sql.qmaker.filters;
  *        SQL filter expression type enumerate.
  */
 public enum ExpressionType {
-    EQUALS("="), GREATER(">"), LOWER("<"), DIFFERENT("<>"), LIKE("LIKE"), BETWEEN("BETWEEN");
+    EQUALS("="),
+    GREATER(">"),
+    LOWER("<"),
+    DIFFERENT("<>"),
+    LIKE("LIKE"),
+    BETWEEN("BETWEEN");
 
     private String sql;
 

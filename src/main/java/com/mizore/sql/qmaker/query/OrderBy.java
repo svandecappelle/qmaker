@@ -1,5 +1,7 @@
 package com.mizore.sql.qmaker.query;
 
+import java.io.Serializable;
+
 /**
  * @author svandecappelle
  *
@@ -7,7 +9,7 @@ package com.mizore.sql.qmaker.query;
  *
  *        Order by clause on field.
  */
-public interface OrderBy {
+public interface OrderBy extends Serializable {
 
     /**
      * Add a ascending parameter.

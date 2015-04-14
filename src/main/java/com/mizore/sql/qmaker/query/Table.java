@@ -1,5 +1,7 @@
 package com.mizore.sql.qmaker.query;
 
+import java.io.Serializable;
+
 import com.mizore.sql.qmaker.utils.SeparatorType;
 
 /**
@@ -9,7 +11,9 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
  *
  *        Table SQL.
  */
-public class Table {
+public class Table implements Serializable{
+
+    private static final long serialVersionUID = -4617924929919373369L;
 
     // Table field name.
     private String name;

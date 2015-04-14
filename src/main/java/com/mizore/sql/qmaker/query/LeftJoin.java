@@ -9,6 +9,8 @@ package com.mizore.sql.qmaker.query;
  */
 public class LeftJoin extends Join {
 
+    private static final long serialVersionUID = -521689995910275963L;
+
     /**
      * Construct a Left-join clause.
      * 

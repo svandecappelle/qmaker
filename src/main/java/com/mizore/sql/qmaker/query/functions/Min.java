@@ -10,6 +10,8 @@ package com.mizore.sql.qmaker.query.functions;
  */
 public class Min extends AbstractFunctionField {
 
+    private static final long serialVersionUID = -2619805695322618823L;
+
     /**
      * Constructor min function selector.
      * 

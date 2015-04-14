@@ -14,6 +14,8 @@ import com.mizore.sql.qmaker.utils.SqlClauses;
  */
 public abstract class AbstractFunctionField extends Field {
 
+    private static final long serialVersionUID = 8202971374202779555L;
+
     /**
      * Add a SQL function on a simple field.
      * 

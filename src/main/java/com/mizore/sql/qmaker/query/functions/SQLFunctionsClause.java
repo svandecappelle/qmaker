@@ -6,7 +6,10 @@ package com.mizore.sql.qmaker.query.functions;
  * @since SQL functions clauses.
  */
 public enum SQLFunctionsClause {
-    MIN("MIN"), MAX("MAX"), AVG("AVG"), COALESCE("COALESCE");
+    MIN("MIN"),
+    MAX("MAX"),
+    AVG("AVG"),
+    COALESCE("COALESCE");
 
     private String sqlClause;
 

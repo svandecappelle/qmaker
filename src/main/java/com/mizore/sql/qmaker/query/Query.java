@@ -14,6 +14,8 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
  */
 public class Query extends HasSqlRestrictions<Query> implements IsClause {
 
+    private static final long serialVersionUID = 3483079046115811468L;
+
     // fields on select.
     private List<Field> fields;
 

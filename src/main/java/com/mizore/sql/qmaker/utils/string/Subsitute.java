@@ -1,5 +1,7 @@
 package com.mizore.sql.qmaker.utils.string;
 
+import java.io.Serializable;
+
 /**
  * @author svandecappelle
  *
@@ -7,7 +9,7 @@ package com.mizore.sql.qmaker.utils.string;
  *
  *        Substitute interface. Need to substituate a value with another.
  */
-public interface Subsitute {
+public interface Subsitute extends Serializable {
 
     /**
      * The value data to replace.

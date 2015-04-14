@@ -9,6 +9,8 @@ import com.mizore.sql.qmaker.utils.SqlClauses;
 
 public class Update extends HasSqlRestrictions<Update> implements IsClause {
 
+    private static final long serialVersionUID = 5081946217393043093L;
+
     private Table table;
 
     private List<Set> sets;

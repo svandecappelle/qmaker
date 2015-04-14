@@ -11,6 +11,8 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
  */
 public class OrderField extends Field {
 
+    private static final long serialVersionUID = 6479479544616306560L;
+
     /**
      * @author svandecappelle
      *

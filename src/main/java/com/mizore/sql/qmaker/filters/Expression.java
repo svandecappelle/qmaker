@@ -1,5 +1,7 @@
 package com.mizore.sql.qmaker.filters;
 
+import java.io.Serializable;
+
 import com.mizore.sql.qmaker.query.Join;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 
@@ -11,7 +13,9 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
  *        SQL expression filter. Used in {@link Join} or {@link Where}
  *        restrictions.
  */
-public abstract class Expression {
+public abstract class Expression implements Serializable{
+
+    private static final long serialVersionUID = 8639220667038005728L;
 
     // Expression filter type.
     private ExpressionType expressionType;

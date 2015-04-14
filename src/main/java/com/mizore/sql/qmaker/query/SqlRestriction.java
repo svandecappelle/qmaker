@@ -1,5 +1,7 @@
 package com.mizore.sql.qmaker.query;
 
+import java.io.Serializable;
+
 import com.mizore.sql.qmaker.filters.Expression;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 
@@ -10,7 +12,9 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
  *
  *        SQl restriction where clause.
  */
-public class SqlRestriction<T extends IsClause> {
+public class SqlRestriction<T extends IsClause> implements Serializable{
+
+    private static final long serialVersionUID = 7493388191128046830L;
 
     private Field field;
 

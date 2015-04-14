@@ -10,6 +10,8 @@ package com.mizore.sql.qmaker.query.functions;
  */
 public class Max extends AbstractFunctionField {
 
+    private static final long serialVersionUID = -3600124746011341967L;
+
     /**
      * Constructor Max function selector.
      * 

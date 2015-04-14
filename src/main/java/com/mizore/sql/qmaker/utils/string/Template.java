@@ -1,5 +1,6 @@
 package com.mizore.sql.qmaker.utils.string;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,9 @@ import java.util.List;
  *
  *        Replacement String template.
  */
-public class Template {
+public class Template implements Serializable {
+
+    private static final long serialVersionUID = 5869197855002571026L;
 
     // Substitutes.
     private List<Subsitute> substitutes;

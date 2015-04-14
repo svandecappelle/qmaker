@@ -9,6 +9,8 @@ package com.mizore.sql.qmaker.query;
  */
 public class RightJoin extends Join {
 
+    private static final long serialVersionUID = -1103180351303103129L;
+
     /**
      * Construct a Right-join clause.
      * 

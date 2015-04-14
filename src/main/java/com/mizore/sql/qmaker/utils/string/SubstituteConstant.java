@@ -9,6 +9,8 @@ package com.mizore.sql.qmaker.utils.string;
  */
 public class SubstituteConstant implements Subsitute {
 
+    private static final long serialVersionUID = -7083864450604688616L;
+
     // The key constant replacement value.
     private String constant;
 

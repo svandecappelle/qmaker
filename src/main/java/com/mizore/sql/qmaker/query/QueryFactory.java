@@ -1,5 +1,6 @@
 package com.mizore.sql.qmaker.query;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import com.mizore.sql.qmaker.utils.SeparatorType;
@@ -14,7 +15,9 @@ import com.mizore.sql.qmaker.utils.string.Template;
  *
  *        Query string factory builder.
  */
-public final class QueryFactory {
+public final class QueryFactory implements Serializable{
+
+    private static final long serialVersionUID = 1443169121477505644L;
 
     /**
      * Private constructor to disable instanciation.

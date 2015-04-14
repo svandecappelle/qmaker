@@ -1,5 +1,7 @@
 package com.mizore.sql.qmaker.query;
 
-public interface IsClause {
+import java.io.Serializable;
+
+public interface IsClause extends Serializable {
 
 }
