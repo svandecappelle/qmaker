@@ -8,10 +8,10 @@ public abstract class HasSqlRestrictions<T extends IsClause> implements Serializ
 
     private static final long serialVersionUID = -3619291759010785491L;
 
-    private ArrayList<SqlRestriction<T>> restrictions;
+    private final List<SqlRestriction<T>> restrictions;
 
     public HasSqlRestrictions() {
-        setRestrictions(new ArrayList<SqlRestriction<T>>());
+        this.restrictions = new ArrayList<SqlRestriction<T>>();
     }
 
     protected abstract T getClause();
@@ -103,9 +103,4 @@ public abstract class HasSqlRestrictions<T extends IsClause> implements Serializ
     protected List<SqlRestriction<T>> getRestrictions() {
         return restrictions;
     }
-
-    protected void setRestrictions(ArrayList<SqlRestriction<T>> restrictions) {
-        this.restrictions = restrictions;
-    }
-
 }
