@@ -21,6 +21,15 @@ public class JoinTest {
     }
 
     @Test
+    public void simpleMultipleOnJoin() {
+        Query q = new Query();
+        q.select("TABLE_1", "FIELD").as("ALIAS_1");
+        q.from("TABLE_1").innerJoin("TABLE_2").on("TABLE_1.ID").equalsTo("TABLE_2.TABLE_2_ID").on("TABLE_1.ID2").equalsTo("TABLE_2.TABLE_2_ID2");
+        logger.info(q.toString());
+        Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1 INNER JOIN TABLE_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID AND TABLE_1.ID2 = TABLE_2.TABLE_2_ID2", q.toString());
+    }
+
+    @Test
     public void multipleJoinWithAlias() {
         Query q = new Query();
         q.select("TABLE_1", "FIELD").as("ALIAS_1");
@@ -28,7 +37,7 @@ public class JoinTest {
         logger.info(q.toString());
         Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM (TABLE_1) JOIN_ALIAS_1 INNER JOIN TABLE_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID INNER JOIN TABLE_3 ON TABLE_1.ID = TABLE_3.TABLE_3_ID", q.toString());
     }
-    
+
     @Test
     public void multipleJoinWithMultiplesAlias() {
         Query q = new Query();
@@ -37,7 +46,7 @@ public class JoinTest {
         logger.info(q.toString());
         Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM (TABLE_1) JOIN_ALIAS_1 INNER JOIN (TABLE_2) JOIN_ALIAS_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID INNER JOIN TABLE_3 ON TABLE_1.ID = TABLE_3.TABLE_3_ID", q.toString());
     }
-    
+
     @Test
     public void multipleJoin() {
         Query q = new Query();

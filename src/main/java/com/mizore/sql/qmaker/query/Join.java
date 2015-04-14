@@ -2,6 +2,10 @@ package com.mizore.sql.qmaker.query;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import com.mizore.sql.qmaker.filters.Expression;
 import com.mizore.sql.qmaker.utils.SeparatorType;
@@ -22,10 +26,11 @@ public abstract class Join implements Serializable {
     private Table table;
 
     // 'On' field SQL restriction join.
-    private Field on;
+    private Field lastOn;
+    private final List<Field> on;
 
     // Expression filters.
-    private ArrayList<Expression> expressionsJoinFilters;
+    private final Map<Field, Expression> expressionsJoinFilters;
 
     private From fromClause;
 
@@ -38,7 +43,8 @@ public abstract class Join implements Serializable {
     public Join(String tableName, From fromClause) {
         this.table = new Table(tableName);
         this.fromClause = fromClause;
-        this.expressionsJoinFilters = new ArrayList<Expression>();
+        this.on = new ArrayList<Field>();
+        this.expressionsJoinFilters = new HashMap<Field, Expression>();
     }
 
     /**
@@ -49,7 +55,8 @@ public abstract class Join implements Serializable {
      * @return The join clause.
      */
     public Join on(String fieldName) {
-        this.on = new Field(fieldName);
+        this.lastOn = new Field(fieldName);
+        this.on.add(lastOn);
         return this;
     }
 
@@ -63,7 +70,8 @@ public abstract class Join implements Serializable {
      * @return The join clause.
      */
     public Join on(String table, String fieldName) {
-        this.on = new Field(new Table(table), fieldName);
+        this.lastOn = new Field(new Table(table), fieldName);
+        this.on.add(lastOn);
         return this;
     }
 
@@ -79,7 +87,8 @@ public abstract class Join implements Serializable {
      * @return The join clause.
      */
     public Join on(String schema, String table, String fieldName) {
-        this.on = new Field(new Table(schema, table), fieldName);
+        this.lastOn = new Field(new Table(schema, table), fieldName);
+        this.on.add(lastOn);
         return this;
     }
 
@@ -89,9 +98,9 @@ public abstract class Join implements Serializable {
      * @param the
      *            expression right side.
      */
-    public From equalsTo(String expression) {
-        expressionsJoinFilters.add(new EqualsExpression(expression));
-        return fromClause;
+    public Join equalsTo(String expression) {
+        expressionsJoinFilters.put(this.lastOn, new EqualsExpression(expression));
+        return this;
     }
 
     /**
@@ -102,9 +111,9 @@ public abstract class Join implements Serializable {
      * @param the
      *            expression right side.
      */
-    public From equalsTo(String table, String fieldName) {
-        expressionsJoinFilters.add(new EqualsExpression(new Field(new Table(table), fieldName).toString()));
-        return fromClause;
+    public Join equalsTo(String table, String fieldName) {
+        expressionsJoinFilters.put(this.lastOn, new EqualsExpression(new Field(new Table(table), fieldName).toString()));
+        return this;
     }
 
     /**
@@ -117,9 +126,9 @@ public abstract class Join implements Serializable {
      * @param the
      *            expression right side.
      */
-    public From equalsTo(String schema, String table, String fieldName) {
-        expressionsJoinFilters.add(new EqualsExpression(new Field(new Table(schema, table), fieldName).toString()));
-        return fromClause;
+    public Join equalsTo(String schema, String table, String fieldName) {
+        expressionsJoinFilters.put(this.lastOn, new EqualsExpression(new Field(new Table(schema, table), fieldName).toString()));
+        return this;
     }
 
     /**
@@ -134,11 +143,94 @@ public abstract class Join implements Serializable {
     }
 
     /**
+     * Insert inner join clause.
+     * 
+     * @param table
+     *            the table on wich the join must be done.
+     * @return the join clause created.
+     */
+    public InnerJoin innerJoin(String table) {
+        return this.fromClause.innerJoin(table);
+    }
+
+    /**
+     * Insert left join clause.
+     * 
+     * @param table
+     *            the table on wich the join must be done.
+     * @return the join clause created.
+     */
+    public Join leftJoin(String table) {
+        return this.fromClause.leftJoin(table);
+    }
+
+    /**
+     * Insert right join clause.
+     * 
+     * @param table
+     *            the table on wich the join must be done.
+     * @return the join clause created.
+     */
+    public Join rightJoin(String table) {
+        return this.fromClause.rightJoin(table);
+    }
+
+    /**
      * Get the SQL Join type.
      * 
      * @return the join type.
      */
     public abstract JoinType getType();
+
+    /**
+     * Insert generic Join clause.
+     * 
+     * @param type
+     *            type of join.
+     * @param table
+     *            the table on wich the join must be done.
+     * @return the join clause created.
+     */
+    public Join join(final JoinType type, String table) {
+        return this.fromClause.join(type, table);
+    }
+
+    /**
+     * Add a simple groupBy SQL clause field.
+     * 
+     * @param fieldName
+     *            the field to group by.
+     */
+    public GroupBy groupBy(String fieldName) {
+        return this.groupBy(null, null, fieldName);
+    }
+
+    /**
+     * Add a group by with table name.
+     * 
+     * @param tableName
+     *            table.
+     * @param fieldName
+     *            field.
+     */
+    public GroupBy groupBy(String tableName, String fieldName) {
+        return this.groupBy(null, tableName, fieldName);
+    }
+
+    /**
+     * Add a group by with table and schema.
+     * 
+     * @param schemaName
+     *            schema name.
+     * @param tableName
+     *            table.
+     * @param fieldName
+     *            field.
+     */
+    public GroupBy groupBy(String schemaName, String tableName, String fieldName) {
+        return this.fromClause.groupBy(schemaName, tableName, fieldName);
+
+    }
 
     @Override
     public String toString() {
@@ -154,12 +246,22 @@ public abstract class Join implements Serializable {
             builder.append(SeparatorType.EMPTY);
             builder.append(SqlClauses.ON);
             builder.append(SeparatorType.EMPTY);
-            builder.append(on);
         }
 
-        for (Expression expression : expressionsJoinFilters) {
+        Iterator<Field> it = this.on.iterator();
+        for (Field fieldOn : this.on) {
+            it.next();
+
+            Expression expression = expressionsJoinFilters.get(fieldOn);
+            builder.append(fieldOn);
             builder.append(SeparatorType.EMPTY);
             builder.append(expression);
+
+            if (it.hasNext()) {
+                builder.append(SeparatorType.EMPTY);
+                builder.append(SeparatorType.AND);
+                builder.append(SeparatorType.EMPTY);
+            }
         }
 
         return builder.toString();
