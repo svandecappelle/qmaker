@@ -12,7 +12,7 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
  *
  *        Make a query.
  */
-public class Query {
+public class Query extends HasSqlRestrictions<Query> implements IsClause {
 
     // fields on select.
     private List<Field> fields;
@@ -23,8 +23,6 @@ public class Query {
     // Query alias.
     private String alias;
 
-    private List<SqlRestriction> restrictions;
-
     // sql order by clauses.
     private ListOrderBy orderBy;
 
@@ -33,7 +31,6 @@ public class Query {
      */
     public Query() {
         fields = new ArrayList<Field>();
-        restrictions = new ArrayList<SqlRestriction>();
     }
 
     /**
@@ -174,90 +171,6 @@ public class Query {
      */
     public void as(String alias) {
         this.alias = alias;
-    }
-
-    /**
-     * Add an sql Where restrition clause to the query.
-     * 
-     * @param expression
-     *            Expression filter.
-     * @return the sql restriction injected clause.
-     */
-    public SqlRestriction where(String expression) {
-        SqlRestriction restriction = new SqlRestriction(new Field(expression), this);
-        this.restrictions.add(restriction);
-        return restriction;
-    }
-
-    /**
-     * Add an sql Where restrition clause to the query.
-     * 
-     * @param table
-     *            table on wich clause is about.
-     * @param field
-     *            fieldname.
-     * @return the sql restriction injected clause.
-     */
-    public SqlRestriction where(String table, String field) {
-        SqlRestriction restriction = new SqlRestriction(new Field(new Table(table), field), this);
-        this.restrictions.add(restriction);
-        return restriction;
-    }
-
-    /**
-     * Add an sql Where restrition clause to the query.
-     * 
-     * @param schema
-     *            the SQL schema of table.
-     * @param table
-     *            table on wich clause is about.
-     * @param field
-     *            fieldname.
-     * @return the sql restriction injected clause.
-     */
-    public SqlRestriction where(String schema, String table, String field) {
-        SqlRestriction restriction = new SqlRestriction(new Field(new Table(schema, table), field), this);
-        this.restrictions.add(restriction);
-        return restriction;
-    }
-
-    /**
-     * Add an sql Where restrition clause to the query.
-     * 
-     * @param field
-     *            fieldname.
-     * @return the sql restriction injected clause.
-     */
-    public SqlRestriction and(String expression) {
-        return this.where(expression);
-    }
-
-    /**
-     * Add an sql Where restrition clause to the query.
-     * 
-     * @param table
-     *            table on wich clause is about.
-     * @param field
-     *            fieldname.
-     * @return the sql restriction injected clause.
-     */
-    public SqlRestriction and(String table, String field) {
-        return this.where(table, field);
-    }
-
-    /**
-     * Add an sql Where restrition clause to the query.
-     * 
-     * @param schema
-     *            the SQL schema of table.
-     * @param table
-     *            table on wich clause is about.
-     * @param field
-     *            fieldname.
-     * @return the sql restriction injected clause.
-     */
-    public SqlRestriction and(String schema, String table, String field) {
-        return this.where(schema, table, field);
     }
 
     /**
@@ -402,7 +315,7 @@ public class Query {
             buffer.append(alias);
         }
 
-        buffer.append(QueryFactory.buildWhere(restrictions));
+        buffer.append(QueryFactory.buildWhere(getRestrictions()));
 
         buffer.append(QueryFactory.buildGroupBy(this.from));
 
@@ -411,5 +324,10 @@ public class Query {
         }
 
         return buffer.toString();
+    }
+
+    @Override
+    protected Query getClause() {
+        return this;
     }
 }

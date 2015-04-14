@@ -72,7 +72,7 @@ public final class QueryFactory {
      *            the restrictions to builds.
      * @return the SQL String representation of Where restrictions clauses.
      */
-    public static String buildWhere(Collection<SqlRestriction> whereClauses) {
+    public static <T extends IsClause> String buildWhere(Collection<SqlRestriction<T>> whereClauses) {
         StringBuilder buffer = new StringBuilder();
 
         if (!whereClauses.isEmpty()) {
@@ -82,7 +82,7 @@ public final class QueryFactory {
         }
 
         int restrictionsCount = whereClauses.size();
-        for (SqlRestriction restriction : whereClauses) {
+        for (SqlRestriction<T> restriction : whereClauses) {
             buffer.append(restriction);
 
             restrictionsCount -= 1;

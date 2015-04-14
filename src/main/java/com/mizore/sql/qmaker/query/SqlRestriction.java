@@ -10,13 +10,13 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
  *
  *        SQl restriction where clause.
  */
-public class SqlRestriction {
+public class SqlRestriction<T extends IsClause> {
 
     private Field field;
 
     private Expression expressionFilter;
 
-    private Query query;
+    private T query;
 
     /**
      * Create an sql restriction where clause.
@@ -26,7 +26,7 @@ public class SqlRestriction {
      * @param query
      *            the original query which restriction is injected.
      */
-    public SqlRestriction(Field field, Query query) {
+    public SqlRestriction(Field field, T query) {
         this.field = field;
         this.query = query;
     }
@@ -38,7 +38,7 @@ public class SqlRestriction {
      *            the expression to filter
      * @return the expression tested on SQL.
      */
-    public Query equalsTo(String expression) {
+    public T equalsTo(String expression) {
         expressionFilter = new EqualsExpression(expression);
         return query;
     }
@@ -52,7 +52,7 @@ public class SqlRestriction {
      *            field name.
      * @return the expression tested on SQL.
      */
-    public Query equalsTo(String table, String field) {
+    public T equalsTo(String table, String field) {
         expressionFilter = new EqualsExpression(new Field(new Table(table), field));
         return query;
     }
@@ -68,7 +68,7 @@ public class SqlRestriction {
      *            fieldname.
      * @return the expression tested on SQL.
      */
-    public Query equalsTo(String schema, String table, String field) {
+    public T equalsTo(String schema, String table, String field) {
         expressionFilter = new EqualsExpression(new Field(new Table(schema, table), field));
         return query;
     }
@@ -98,7 +98,7 @@ public class SqlRestriction {
      * @param from
      * @param to
      */
-    public Query beetween(String from, String to) {
+    public T beetween(String from, String to) {
         expressionFilter = new BetweenExpression(from, to);
         return query;
     }
