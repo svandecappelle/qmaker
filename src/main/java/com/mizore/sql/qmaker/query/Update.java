@@ -2,6 +2,7 @@ package com.mizore.sql.qmaker.query;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
@@ -12,13 +13,19 @@ public class Update extends HasSqlRestrictions<Update> implements IsClause {
 
     private Table table;
 
-    private ArrayList<Set> sets;
+    private final List<Set> sets;
+
+    private Update() {
+        this.sets = new ArrayList<Set>();
+    }
 
     public Update(String table) {
+        this();
         this.table = new Table(table);
     }
 
     public Update(String schema, String table) {
+        this();
         this.table = new Table(schema, table);
     }
 
@@ -27,9 +34,6 @@ public class Update extends HasSqlRestrictions<Update> implements IsClause {
     }
 
     public Set set(Field field) {
-        if (this.sets == null) {
-            this.sets = new ArrayList<Set>();
-        }
         Set set = new Set(this, field);
         this.sets.add(set);
         return set;
