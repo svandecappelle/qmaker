@@ -21,7 +21,9 @@ public enum SqlClauses {
     DELETE("DELETE"),
     DROP("DROP"),
     INSERT("INSERT"),
-    INTO("INTO");
+    INTO("INTO"),
+    UNION("UNION"),
+    ALL("ALL");
 
     private String sqlClause;
 
