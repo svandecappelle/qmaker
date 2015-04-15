@@ -15,7 +15,7 @@ import com.mizore.sql.qmaker.utils.string.Template;
  *
  *        Query string factory builder.
  */
-public final class QueryFactory implements Serializable{
+public final class QueryFactory implements Serializable {
 
     private static final long serialVersionUID = 1443169121477505644L;
 
@@ -33,22 +33,7 @@ public final class QueryFactory implements Serializable{
      * @return the SQL String representation of select clause.
      */
     public static String buildSelect(Collection<Field> fields) {
-
-        StringBuilder buffer = new StringBuilder();
-        buffer.append(SqlClauses.SELECT);
-        int dataFieldsCount = fields.size();
-        for (Field field : fields) {
-            buffer.append(SeparatorType.EMPTY);
-            buffer.append(field);
-
-            dataFieldsCount -= 1;
-            if (dataFieldsCount > 0) {
-                buffer.append(SeparatorType.FIELD);
-            }
-        }
-
-        buffer.append(SeparatorType.EMPTY);
-        return buffer.toString();
+        return buildFields(SqlClauses.SELECT, fields);
     }
 
     /**
@@ -128,4 +113,27 @@ public final class QueryFactory implements Serializable{
 
         return buffer.toString();
     }
+
+    public static String buildDelete(Collection<Field> fields) {
+        return buildFields(SqlClauses.DELETE, fields);
+    }
+
+    private static String buildFields(SqlClauses clause, Collection<Field> fields) {
+        StringBuilder buffer = new StringBuilder();
+        buffer.append(clause);
+        int dataFieldsCount = fields.size();
+        for (Field field : fields) {
+            buffer.append(SeparatorType.EMPTY);
+            buffer.append(field);
+
+            dataFieldsCount -= 1;
+            if (dataFieldsCount > 0) {
+                buffer.append(SeparatorType.FIELD);
+            }
+        }
+
+        buffer.append(SeparatorType.EMPTY);
+        return buffer.toString();
+    }
+
 }

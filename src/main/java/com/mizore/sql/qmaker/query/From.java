@@ -48,7 +48,11 @@ public class From implements Serializable {
      *            table name.
      */
     public From(String schema, String table) {
-        this.table = new Table(schema, table);
+        this(new Table(schema, table));
+    }
+
+    public From(Table table) {
+        this.table = table;
         this.joins = new ListJoin<Join>();
     }
 

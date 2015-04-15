@@ -42,8 +42,8 @@ public class SqlRestriction<T extends IsClause> implements Serializable{
      *            the expression to filter
      * @return the expression tested on SQL.
      */
-    public T equalsTo(String expression) {
-        expressionFilter = new EqualsExpression(expression);
+    public <O> T equalsTo(O expression) {
+        expressionFilter = new EqualsExpression(expression.toString());
         return query;
     }
 
