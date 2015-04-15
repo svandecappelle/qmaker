@@ -2,21 +2,26 @@ package com.mizore.sql.qmaker.query;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
 
+// Suppress warning for renderer.
+@SuppressWarnings("rawtypes")
 public class Insert {
 
     private Table table;
 
-    private Map<Field, Object> values;
+    private final Map<Field, Object> values;
+    private final Map<Field, Renderer> renderers;
 
     public Insert(Table table) {
         this.table = table;
-        this.values = new HashMap<Field, Object>();
+        this.values = new LinkedHashMap<Field, Object>();
+        this.renderers = new HashMap<Field, Renderer>();
     }
 
     public Insert(String table) {
@@ -25,6 +30,20 @@ public class Insert {
 
     public Insert(String schema, String table) {
         this(new Table(schema, table));
+    }
+
+    public <T> void set(String field, T object, Renderer<T> renderer) {
+        Field fieldObject = new Field(field);
+        this.set(fieldObject, object, renderer);
+    }
+
+    public <T> void set(Field field, T object, Renderer<T> renderer) {
+        this.set(field, object);
+        this.setRenderer(field, renderer);
+    }
+
+    private <T> void setRenderer(Field field, Renderer<T> renderer) {
+        this.renderers.put(field, renderer);
     }
 
     public <T> void set(Field field, T value) {
@@ -48,6 +67,7 @@ public class Insert {
         return this.asString();
     }
 
+    @SuppressWarnings("unchecked")
     public String asString() {
         StringBuilder builder = new StringBuilder();
         builder.append(SqlClauses.INSERT);
@@ -82,7 +102,12 @@ public class Insert {
         it = this.values.entrySet().iterator();
         for (Entry<Field, Object> value : this.values.entrySet()) {
             it.next();
-            builder.append(value.getValue());
+            if (this.renderers.containsKey(value.getKey())) {
+                builder.append(this.renderers.get(value.getKey()).render(value.getValue()));
+            } else {
+                builder.append(value.getValue());
+            }
+
             if (it.hasNext()) {
                 builder.append(SeparatorType.FIELD);
                 builder.append(SeparatorType.EMPTY);
