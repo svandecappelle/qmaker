@@ -22,12 +22,19 @@ public class Set implements Serializable {
         this.field = field;
     }
 
-    public Set to(String fieldTo) {
-        this.fieldTo = new Field(fieldTo);
-        return this;
+    public <T> Set to(T fieldTo) {
+        StringBuilder valueString = new StringBuilder();
+        if (fieldTo instanceof String) {
+            valueString.append(SeparatorType.QUOTE);
+            valueString.append(fieldTo);
+            valueString.append(SeparatorType.QUOTE);
+        } else {
+            valueString.append(fieldTo);
+        }
+        return this.to(new Field(valueString.toString()));
     }
 
-    public Set to(Field fieldTo) {
+    public <T> Set to(Field fieldTo) {
         this.fieldTo = fieldTo;
         return this;
     }

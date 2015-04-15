@@ -23,7 +23,8 @@ public enum SqlClauses {
     INSERT("INSERT"),
     INTO("INTO"),
     UNION("UNION"),
-    ALL("ALL");
+    ALL("ALL"),
+    VALUES("VALUES");
 
     private String sqlClause;
 

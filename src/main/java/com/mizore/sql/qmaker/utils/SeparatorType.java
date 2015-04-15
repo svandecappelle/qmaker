@@ -13,7 +13,8 @@ public enum SeparatorType {
     DOT("."),
     LEFT_PARENTHESIS("("),
     RIGHT_PARENTHESIS(")"),
-    AND("AND");
+    AND("AND"),
+    QUOTE("'");
 
     private String sqlSeparator;
 
