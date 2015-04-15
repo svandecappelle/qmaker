@@ -12,7 +12,7 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
  *
  *        Make a query.
  */
-public class Query extends HasSqlRestrictions<Query> implements IsClause {
+public class Query extends HasSqlRestrictions<Query> implements IsClause, IsSelectionQuery {
 
     private static final long serialVersionUID = 3483079046115811468L;
 
@@ -113,6 +113,18 @@ public class Query extends HasSqlRestrictions<Query> implements IsClause {
      */
     public From from(Query query) {
         this.from = new From(query);
+        return from;
+    }
+
+    /**
+     * Insert from clause.
+     * 
+     * @param query
+     *            sub-query clause from.
+     * @return the from clause.
+     */
+    public From from(IsSelectionQuery query) {
+        this.from = new From(SeparatorType.LEFT_PARENTHESIS + query.toString() + SeparatorType.RIGHT_PARENTHESIS);
         return from;
     }
 

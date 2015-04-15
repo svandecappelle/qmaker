@@ -9,7 +9,7 @@ import java.util.Map;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
 
-public class Union implements Serializable {
+public class Union implements Serializable, IsSelectionQuery {
 
     private static final long serialVersionUID = -4823866748493050883L;
 
