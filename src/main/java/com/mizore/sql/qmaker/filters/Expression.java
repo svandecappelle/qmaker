@@ -13,7 +13,7 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
  *        SQL expression filter. Used in {@link Join} or {@link Where}
  *        restrictions.
  */
-public abstract class Expression implements Serializable{
+public abstract class Expression implements Serializable {
 
     private static final long serialVersionUID = 8639220667038005728L;
 
@@ -22,6 +22,8 @@ public abstract class Expression implements Serializable{
 
     // Expression.
     private String sqlExpression;
+
+    private boolean isQueryExpression;
 
     /**
      * Construct expression.
@@ -55,6 +57,11 @@ public abstract class Expression implements Serializable{
         this.sqlExpression = sqlExpression;
     }
 
+    public Expression(ExpressionType type, String expression, boolean isQueryExpression) {
+        this(type, expression);
+        this.isQueryExpression = isQueryExpression;
+    }
+
     /**
      * Get the expression type.
      * 
@@ -78,7 +85,16 @@ public abstract class Expression implements Serializable{
         StringBuilder builder = new StringBuilder();
         builder.append(getExpressionType().toSql());
         builder.append(SeparatorType.EMPTY);
+
+        if (isQueryExpression) {
+            builder.append(SeparatorType.LEFT_PARENTHESIS);
+        }
+        
         builder.append(getSqlExpression());
+        
+        if (isQueryExpression) {
+            builder.append(SeparatorType.RIGHT_PARENTHESIS);
+        }
         return builder.toString();
     }
 }

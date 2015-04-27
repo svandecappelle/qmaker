@@ -8,6 +8,7 @@ import org.junit.Test;
 import com.mizore.sql.qmaker.query.DateRenderer;
 import com.mizore.sql.qmaker.query.Insert;
 import com.mizore.sql.qmaker.query.Renderer;
+import com.mizore.sql.qmaker.query.Sequence;
 
 public class InsertTest {
 
@@ -16,6 +17,13 @@ public class InsertTest {
         Insert q = new Insert("TABLE_1");
         q.set("FIELD", 1);
         Assert.assertEquals("INSERT INTO TABLE_1 (FIELD) VALUES (1)", q.asString());
+    }
+    
+    @Test
+    public void insertWithSequenceTest() {
+        Insert q = new Insert("TABLE_1");
+        q.set("FIELD", new Sequence("SEQ"));
+        Assert.assertEquals("INSERT INTO TABLE_1 (FIELD) VALUES (SEQ.nextVal)", q.asString());
     }
 
     @Test

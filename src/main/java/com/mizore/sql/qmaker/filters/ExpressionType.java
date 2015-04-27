@@ -13,7 +13,9 @@ public enum ExpressionType {
     LOWER("<"),
     DIFFERENT("<>"),
     LIKE("LIKE"),
-    BETWEEN("BETWEEN");
+    BETWEEN("BETWEEN"),
+    EXISTS("EXISTS"),
+    NOT_EXISTS("NOT EXISTS");
 
     private String sql;
 

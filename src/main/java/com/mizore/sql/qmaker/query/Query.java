@@ -320,6 +320,14 @@ public class Query extends HasSqlRestrictions<Query> implements IsClause, IsSele
 
         buffer.append(QueryFactory.buildFrom(from));
 
+        buffer.append(QueryFactory.buildWhere(getRestrictions()));
+
+        buffer.append(QueryFactory.buildGroupBy(this.from));
+
+        if (orderBy != null) {
+            buffer.append(QueryFactory.buildOrder(orderBy));
+        }
+        
         if (alias != null && !from.isQuery()) {
             buffer.append(SeparatorType.RIGHT_PARENTHESIS);
             buffer.append(SeparatorType.EMPTY);
@@ -327,14 +335,6 @@ public class Query extends HasSqlRestrictions<Query> implements IsClause, IsSele
         } else if (alias != null) {
             buffer.append(SeparatorType.EMPTY);
             buffer.append(alias);
-        }
-
-        buffer.append(QueryFactory.buildWhere(getRestrictions()));
-
-        buffer.append(QueryFactory.buildGroupBy(this.from));
-
-        if (orderBy != null) {
-            buffer.append(QueryFactory.buildOrder(orderBy));
         }
 
         return buffer.toString();
