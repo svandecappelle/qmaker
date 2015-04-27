@@ -155,6 +155,47 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
         return this.setExpression(ExpressionType.EXISTS, schema, table, field);
     }
 
+    // IN
+
+    /**
+     * Set in SQL restriction value.
+     * 
+     * @param expression
+     *            the expression to filter
+     * @return the expression tested on SQL.
+     */
+    public <O> T in(O expression) {
+        return this.setExpression(ExpressionType.IN, expression);
+    }
+
+    /**
+     * Set in SQL restriction value.
+     * 
+     * @param table
+     *            table name.
+     * @param field
+     *            field name.
+     * @return the expression tested on SQL.
+     */ 
+    public T in(String table, String field) {
+        return this.setExpression(ExpressionType.IN, table, field);
+    }
+
+    /**
+     * Set in SQL restriction value.
+     * 
+     * @param schema
+     *            schema name.
+     * @param table
+     *            table name.
+     * @param field
+     *            fieldname.
+     * @return the expression tested on SQL.
+     */
+    public T in(String schema, String table, String field) {
+        return this.setExpression(ExpressionType.IN, schema, table, field);
+    }
+
     // Not exists
 
     /**
@@ -241,6 +282,9 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
             break;
         case GREATER:
             exp = new GreaterExpression(expression.toString());
+            break;
+        case IN:
+            exp = new InExpression(expression.toString());
             break;
         default:
             new RuntimeException("get expression with single value doesn't allow type of between");
