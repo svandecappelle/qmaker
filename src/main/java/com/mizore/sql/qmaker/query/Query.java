@@ -156,9 +156,48 @@ public class Query extends HasSqlRestrictions<Query> implements IsClause, IsSele
     }
 
     /**
-     * Add an inner join to query.
+     * Add an left join to query.
      * 
-     * @return inner join SQL clause added to query.
+     * @return left join SQL clause added to query.
+     */
+    public LeftJoin leftJoin(String table) {
+        if (from != null) {
+            return from.leftJoin(table);
+        } else {
+            throw new IllegalQueryFormedException("SQl Join can only be added to and existing from clause. Check you've added from SQL clause on Query.");
+        }
+    }
+
+    /**
+     * Add an right join to query.
+     * 
+     * @return right join SQL clause added to query.
+     */
+    public RightJoin rightJoin(String table) {
+        if (from != null) {
+            return from.rightJoin(table);
+        } else {
+            throw new IllegalQueryFormedException("SQl Join can only be added to and existing from clause. Check you've added from SQL clause on Query.");
+        }
+    }
+
+    /**
+     * Add an outer join to query.
+     * 
+     * @return outer join SQL clause added to query.
+     */
+    public OuterJoin outerJoin(String table) {
+        if (from != null) {
+            return from.outerJoin(table);
+        } else {
+            throw new IllegalQueryFormedException("SQl Join can only be added to and existing from clause. Check you've added from SQL clause on Query.");
+        }
+    }
+
+    /**
+     * Add an join to query.
+     * 
+     * @return join SQL clause added to query.
      */
     public Join join(JoinType type, String table) {
         if (from != null) {
@@ -327,7 +366,7 @@ public class Query extends HasSqlRestrictions<Query> implements IsClause, IsSele
         if (orderBy != null) {
             buffer.append(QueryFactory.buildOrder(orderBy));
         }
-        
+
         if (alias != null && !from.isQuery()) {
             buffer.append(SeparatorType.RIGHT_PARENTHESIS);
             buffer.append(SeparatorType.EMPTY);

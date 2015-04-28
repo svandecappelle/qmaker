@@ -109,7 +109,7 @@ public class From implements Serializable {
      *            the table on wich the join must be done.
      * @return the join clause created.
      */
-    public Join leftJoin(String table) {
+    public LeftJoin leftJoin(String table) {
         LeftJoin innerJoin = new LeftJoin(table, this);
         this.joins.add(innerJoin);
         return innerJoin;
@@ -122,8 +122,21 @@ public class From implements Serializable {
      *            the table on wich the join must be done.
      * @return the join clause created.
      */
-    public Join rightJoin(String table) {
+    public RightJoin rightJoin(String table) {
         RightJoin innerJoin = new RightJoin(table, this);
+        this.joins.add(innerJoin);
+        return innerJoin;
+    }
+    
+    /**
+     * Insert right join clause.
+     * 
+     * @param table
+     *            the table on wich the join must be done.
+     * @return the join clause created.
+     */
+    public OuterJoin outerJoin(String table) {
+        OuterJoin innerJoin = new OuterJoin(table, this);
         this.joins.add(innerJoin);
         return innerJoin;
     }
