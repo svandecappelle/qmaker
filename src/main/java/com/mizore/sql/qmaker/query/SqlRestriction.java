@@ -176,7 +176,7 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
      * @param field
      *            field name.
      * @return the expression tested on SQL.
-     */ 
+     */
     public T in(String table, String field) {
         return this.setExpression(ExpressionType.IN, table, field);
     }
@@ -194,6 +194,47 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
      */
     public T in(String schema, String table, String field) {
         return this.setExpression(ExpressionType.IN, schema, table, field);
+    }
+
+    // NOT IN
+
+    /**
+     * Set notIn SQL restriction value.
+     * 
+     * @param expression
+     *            the expression to filter
+     * @return the expression tested on SQL.
+     */
+    public <O> T notIn(O expression) {
+        return this.setExpression(ExpressionType.NOT_IN, expression);
+    }
+
+    /**
+     * Set notIn SQL restriction value.
+     * 
+     * @param table
+     *            table name.
+     * @param field
+     *            field name.
+     * @return the expression tested on SQL.
+     */
+    public T notIn(String table, String field) {
+        return this.setExpression(ExpressionType.NOT_IN, table, field);
+    }
+
+    /**
+     * Set notIn SQL restriction value.
+     * 
+     * @param schema
+     *            schema name.
+     * @param table
+     *            table name.
+     * @param field
+     *            fieldname.
+     * @return the expression tested on SQL.
+     */
+    public T notIn(String schema, String table, String field) {
+        return this.setExpression(ExpressionType.NOT_IN, schema, table, field);
     }
 
     // Not exists
@@ -285,6 +326,9 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
             break;
         case IN:
             exp = new InExpression(expression.toString());
+            break;
+        case NOT_IN:
+            exp = new NotInExpression(expression.toString());
             break;
         default:
             new RuntimeException("get expression with single value doesn't allow type of between");

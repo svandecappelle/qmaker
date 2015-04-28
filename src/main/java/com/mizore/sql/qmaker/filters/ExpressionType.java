@@ -16,7 +16,8 @@ public enum ExpressionType {
     BETWEEN("BETWEEN"),
     EXISTS("EXISTS"),
     NOT_EXISTS("NOT EXISTS"),
-    IN("IN");
+    IN("IN"),
+    NOT_IN("NOT IN");
 
     private String sql;
 
