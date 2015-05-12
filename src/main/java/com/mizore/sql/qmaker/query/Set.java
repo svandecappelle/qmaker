@@ -22,6 +22,12 @@ public class Set implements Serializable {
         this.field = field;
     }
 
+    public <T> Set toRender(T fieldTo, Renderer<T> renderer) {
+        StringBuilder valueString = new StringBuilder();
+        valueString.append(renderer.render(fieldTo));
+        return this.to(new Field(valueString.toString()));
+    }
+
     public <T> Set to(T fieldTo) {
         StringBuilder valueString = new StringBuilder();
         if (fieldTo instanceof String) {
@@ -36,6 +42,11 @@ public class Set implements Serializable {
 
     public <T> Set to(Field fieldTo) {
         this.fieldTo = fieldTo;
+        return this;
+    }
+
+    public <T> Set to(T fieldTo, Renderer<T> renderer) {
+        this.toRender(fieldTo, renderer);
         return this;
     }
 
