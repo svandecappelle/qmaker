@@ -423,4 +423,122 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
         expressionFilter = this.getExpression(ExpressionType.BETWEEN, fromTo);
         return this.query;
     }
+
+    /**
+     * Set startWith SQL restriction value.
+     * 
+     * @param expression
+     *            the expression to filter
+     * @return the expression tested on SQL.
+     */
+    public <O> T startWith(O expression) {
+        return this.setExpression(ExpressionType.LIKE, "'" + expression + "%'");
+    }
+
+    /**
+     * Set startWith SQL restriction value.
+     * 
+     * @param table
+     *            table name.
+     * @param field
+     *            field name.
+     * @return the expression tested on SQL.
+     */
+    public T startWith(String table, String field) {
+        return this.setExpression(ExpressionType.LIKE, table, "'" + field + "%'");
+    }
+
+    /**
+     * Set startWith SQL restriction value.
+     * 
+     * @param schema
+     *            schema name.
+     * @param table
+     *            table name.
+     * @param field
+     *            fieldname.
+     * @return the expression tested on SQL.
+     */
+    public T startWith(String schema, String table, String field) {
+        return this.setExpression(ExpressionType.LIKE, schema, table, "'" + field + "%'");
+    }
+
+    /**
+     * Set endsWith SQL restriction value.
+     * 
+     * @param expression
+     *            the expression to filter
+     * @return the expression tested on SQL.
+     */
+    public <O> T endsWith(O expression) {
+        return this.setExpression(ExpressionType.LIKE, "'%" + expression + "'");
+    }
+
+    /**
+     * Set endsWith SQL restriction value.
+     * 
+     * @param table
+     *            table name.
+     * @param field
+     *            field name.
+     * @return the expression tested on SQL.
+     */
+    public T endsWith(String table, String field) {
+        return this.setExpression(ExpressionType.LIKE, table, "'%" + field + "'");
+    }
+
+    /**
+     * Set endsWith SQL restriction value.
+     * 
+     * @param schema
+     *            schema name.
+     * @param table
+     *            table name.
+     * @param field
+     *            fieldname.
+     * @return the expression tested on SQL.
+     */
+    public T endsWith(String schema, String table, String field) {
+        return this.setExpression(ExpressionType.LIKE, schema, table, "'%" + field + "'");
+    }
+
+    /**
+     * Set contains SQL restriction value.
+     * 
+     * @param expression
+     *            the expression to filter
+     * @return the expression tested on SQL.
+     */
+    public <O> T contains(O expression) {
+        return this.setExpression(ExpressionType.LIKE, "'%" + expression + "%'");
+    }
+
+    /**
+     * Set contains SQL restriction value.
+     * 
+     * @param table
+     *            table name.
+     * @param field
+     *            field name.
+     * @return the expression tested on SQL.
+     */
+    public T contains(String table, String field) {
+        return this.setExpression(ExpressionType.LIKE, table, "'%" + field + "%'");
+    }
+
+    /**
+     * Set contains SQL restriction value.
+     * 
+     * @param schema
+     *            schema name.
+     * @param table
+     *            table name.
+     * @param field
+     *            fieldname.
+     * @return the expression tested on SQL.
+     */
+    public T contains(String schema, String table, String field) {
+        return this.setExpression(ExpressionType.LIKE, schema, table, "'%" + field + "%'");
+    }
+
 }
