@@ -541,4 +541,127 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
         return this.setExpression(ExpressionType.LIKE, schema, table, "'%" + field + "%'");
     }
 
+    // UPPER
+
+    /**
+     * Set greater SQL restriction value.
+     * 
+     * @param expression
+     *            the expression to filter
+     * @return the expression tested on SQL.
+     */
+    public <O> T greater(O expression) {
+        return this.setExpression(ExpressionType.GREATER, expression);
+    }
+
+    /**
+     * Set greater SQL restriction value.
+     * 
+     * @param table
+     *            table name.
+     * @param field
+     *            field name.
+     * @return the expression tested on SQL.
+     */
+    public T greater(String table, String field) {
+        return this.setExpression(ExpressionType.GREATER, table, field);
+    }
+
+    /**
+     * Set greater SQL restriction value.
+     * 
+     * @param schema
+     *            schema name.
+     * @param table
+     *            table name.
+     * @param field
+     *            fieldname.
+     * @return the expression tested on SQL.
+     */
+    public T greater(String schema, String table, String field) {
+        return this.setExpression(ExpressionType.GREATER, schema, table, field);
+    }
+
+    // LOWER
+
+    /**
+     * Set lower SQL restriction value.
+     * 
+     * @param expression
+     *            the expression to filter
+     * @return the expression tested on SQL.
+     */
+    public <O> T lower(O expression) {
+        return this.setExpression(ExpressionType.LOWER, expression);
+    }
+
+    /**
+     * Set lower SQL restriction value.
+     * 
+     * @param table
+     *            table name.
+     * @param field
+     *            field name.
+     * @return the expression tested on SQL.
+     */
+    public T lower(String table, String field) {
+        return this.setExpression(ExpressionType.LOWER, table, field);
+    }
+
+    /**
+     * Set lower SQL restriction value.
+     * 
+     * @param schema
+     *            schema name.
+     * @param table
+     *            table name.
+     * @param field
+     *            fieldname.
+     * @return the expression tested on SQL.
+     */
+    public T lower(String schema, String table, String field) {
+        return this.setExpression(ExpressionType.LOWER, schema, table, field);
+    }
+
+    
+    // LIKE
+    
+    /**
+     * Set lower SQL restriction value.
+     * 
+     * @param expression
+     *            the expression to filter
+     * @return the expression tested on SQL.
+     */
+    public <O> T like(O expression) {
+        return this.setExpression(ExpressionType.LIKE, expression);
+    }
+
+    /**
+     * Set lower SQL restriction value.
+     * 
+     * @param table
+     *            table name.
+     * @param field
+     *            field name.
+     * @return the expression tested on SQL.
+     */
+    public T like(String table, String field) {
+        return this.setExpression(ExpressionType.LIKE, table, field);
+    }
+
+    /**
+     * Set lower SQL restriction value.
+     * 
+     * @param schema
+     *            schema name.
+     * @param table
+     *            table name.
+     * @param field
+     *            fieldname.
+     * @return the expression tested on SQL.
+     */
+    public T like(String schema, String table, String field) {
+        return this.setExpression(ExpressionType.LIKE, schema, table, field);
+    }
 }
