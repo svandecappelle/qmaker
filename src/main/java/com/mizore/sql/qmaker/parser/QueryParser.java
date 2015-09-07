@@ -13,8 +13,8 @@ import com.mizore.sql.qmaker.query.Query;
  *
  * @since 0.0.1
  *
- *        An XML query parser. Giving the file the parser returns the query
- *        found in file. (see documentation for xml file exemple)
+ *        An XML query parser. Giving the file the parser returns the query found in file. (see documentation for xml
+ *        file exemple)
  */
 public class QueryParser extends DefaultHandler {
     private Query query;
@@ -35,6 +35,19 @@ public class QueryParser extends DefaultHandler {
             Field field = query.select(attributes.getValue(XmlParserField.NAME.name().toLowerCase()));
             if (attributes.getValue(XmlParserField.AS.name().toLowerCase()) != null) {
                 field.as(attributes.getValue(XmlParserField.AS.name().toLowerCase()));
+            }
+            if (attributes.getValue(XmlParserField.ORDER.name().toLowerCase()) != null) {
+                boolean isAsc = true;
+
+                if (attributes.getValue(XmlParserField.ORDER.name().toLowerCase()).equalsIgnoreCase("desc")) {
+                    isAsc = false;
+                }
+
+                if (field.getAlias() != null) {
+                    query.orderBy(field.getAlias().getName(), isAsc);
+                } else {
+                    query.orderBy(field.getName(), isAsc);
+                }
             }
         } else if (qName.equalsIgnoreCase(XmlParserField.TABLE.name())) {
             query.from(attributes.getValue(XmlParserField.NAME.name().toLowerCase()));
