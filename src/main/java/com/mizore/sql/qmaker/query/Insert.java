@@ -38,7 +38,7 @@ public class Insert {
     }
 
     public <T> void set(Field field, T object, Renderer<T> renderer) {
-        this.set(field, object);
+        this.values.put(field, object);
         this.setRenderer(field, renderer);
     }
 
