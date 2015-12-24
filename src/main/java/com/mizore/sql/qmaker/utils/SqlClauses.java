@@ -24,7 +24,13 @@ public enum SqlClauses {
     INTO("INTO"),
     UNION("UNION"),
     ALL("ALL"),
-    VALUES("VALUES");
+    VALUES("VALUES"),
+    MERGE("MERGE"),
+    USING("USING"),
+    WHEN("WHEN"),
+    THEN("THEN"),
+    MATCHED("MATCHED"),
+    NOT("NOT");
 
     private String sqlClause;
 

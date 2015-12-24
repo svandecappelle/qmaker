@@ -1,42 +1,71 @@
 package com.mizore.sql.qmaker.query;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
+import com.mizore.sql.qmaker.filters.ExpressionType;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
 
-public class Update extends HasSqlRestrictions<Update> implements IsClause {
+@SuppressWarnings("rawtypes")
+public class Update extends HasSqlRestrictions<Update>implements IsClause {
 
     private static final long serialVersionUID = 5081946217393043093L;
 
     private Table table;
 
-    private final List<Set> sets;
+    private final Map<Field, Object> values;
+    private final Map<Field, Renderer> renderers;
 
-    private Update() {
-        this.sets = new ArrayList<Set>();
+    public Update(){
+        this.values = new LinkedHashMap<Field, Object>();
+        this.renderers = new HashMap<Field, Renderer>();
+    }
+    
+    public Update(Table table) {
+        this();
+        this.table = table;
     }
 
     public Update(String table) {
-        this();
-        this.table = new Table(table);
+        this(new Table(table));
     }
 
     public Update(String schema, String table) {
-        this();
-        this.table = new Table(schema, table);
+        this(new Table(schema, table));
     }
 
-    public Set set(String field) {
-        return this.set(new Field(field));
+    public <T> void set(String field, T object, Renderer<T> renderer) {
+        Field fieldObject = new Field(field);
+        this.set(fieldObject, object, renderer);
     }
 
-    public Set set(Field field) {
-        Set set = new Set(this, field);
-        this.sets.add(set);
-        return set;
+    public <T> void set(Field field, T object, Renderer<T> renderer) {
+        this.values.put(field, object);
+        this.setRenderer(field, renderer);
+    }
+
+    private <T> void setRenderer(Field field, Renderer<T> renderer) {
+        this.renderers.put(field, renderer);
+    }
+
+    public <T> void set(Field field, T value) {
+        if (value instanceof String) {
+            StringBuilder valueString = new StringBuilder();
+            valueString.append(SeparatorType.QUOTE);
+            valueString.append(value);
+            valueString.append(SeparatorType.QUOTE);
+            this.values.put(field, valueString);
+        } else {
+            this.values.put(field, value);
+        }
+    }
+
+    public <T> void set(String field, T value) {
+        this.set(new Field(field), value);
     }
 
     @Override
@@ -44,19 +73,34 @@ public class Update extends HasSqlRestrictions<Update> implements IsClause {
         return this;
     }
 
-    @Override
-    public String toString() {
+    @SuppressWarnings("unchecked")
+    public String asString() {
         StringBuilder builder = new StringBuilder();
         builder.append(SqlClauses.UPDATE);
         builder.append(SeparatorType.EMPTY);
-        builder.append(this.table);
-        builder.append(SeparatorType.EMPTY);
+        
+        if (table !=null ){
+            builder.append(this.table);
+            builder.append(SeparatorType.EMPTY);
+                
+        }
         builder.append(SqlClauses.SET);
         builder.append(SeparatorType.EMPTY);
-        Iterator<Set> it = this.sets.iterator();
-        for (Set set : this.sets) {
+        
+        Iterator<Field> it = this.values.keySet().iterator();
+        for (Entry<Field, Object> value : this.values.entrySet()) {
             it.next();
-            builder.append(set);
+
+            builder.append(value.getKey());
+            builder.append(SeparatorType.EMPTY);
+            builder.append(ExpressionType.EQUALS.toSql());
+            builder.append(SeparatorType.EMPTY);
+            
+            if (this.renderers.containsKey(value.getKey())) {
+                builder.append(this.renderers.get(value.getKey()).render(value.getValue()));
+            } else {
+                builder.append(value.getValue());
+            }
 
             if (it.hasNext()) {
                 builder.append(SeparatorType.FIELD);
@@ -69,8 +113,9 @@ public class Update extends HasSqlRestrictions<Update> implements IsClause {
         return builder.toString();
     }
 
-    public String asString() {
-        return toString();
+    @Override
+    public String toString() {
+        return asString();
     }
 
 }

@@ -12,7 +12,7 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
  *
  *        Make a query.
  */
-public class Query extends HasSqlRestrictions<Query> implements IsClause, IsSelectionQuery {
+public class Query extends HasSqlRestrictions<Query>implements IsClause, IsSelectionQuery {
 
     private static final long serialVersionUID = 3483079046115811468L;
 
@@ -38,19 +38,6 @@ public class Query extends HasSqlRestrictions<Query> implements IsClause, IsSele
     /**
      * Insert select clause.
      * 
-     * @param field
-     *            field name.
-     * @return the field clause associated to the select entered.
-     */
-    public Field select(String field) {
-        Field fieldOutput = new Field(field);
-        fields.add(fieldOutput);
-        return fieldOutput;
-    }
-
-    /**
-     * Insert select clause.
-     * 
      * @param schema
      *            schema name.
      * @param table
@@ -59,7 +46,7 @@ public class Query extends HasSqlRestrictions<Query> implements IsClause, IsSele
      *            field name.
      * @return the field clause associated to the select entered.
      */
-    public Field select(String schema, String table, String field) {
+    public <T> Field select(String schema, String table, T field) {
         Field fieldOutput = new Field(new Table(schema, table), field);
         fields.add(fieldOutput);
         return fieldOutput;
@@ -86,8 +73,21 @@ public class Query extends HasSqlRestrictions<Query> implements IsClause, IsSele
      *            field name.
      * @return the field clause associated to the select entered.
      */
-    public Field select(String table, String field) {
+    public <T> Field select(String table, T field) {
         Field fieldOutput = new Field(new Table(table), field);
+        fields.add(fieldOutput);
+        return fieldOutput;
+    }
+
+    /**
+     * Insert select clause.
+     * 
+     * @param field
+     *            field name.
+     * @return the field clause associated to the select entered.
+     */
+    public <T> Field select(T field) {
+        Field fieldOutput = new Field(field);
         fields.add(fieldOutput);
         return fieldOutput;
     }
@@ -377,6 +377,15 @@ public class Query extends HasSqlRestrictions<Query> implements IsClause, IsSele
         }
 
         return buffer.toString();
+    }
+
+    /**
+     * Get SQL SELECT Query fields
+     * 
+     * @return list of all select clauses fields.
+     */
+    protected List<Field> getFields() {
+        return fields;
     }
 
     @Override

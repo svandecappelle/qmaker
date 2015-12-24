@@ -6,7 +6,7 @@ import java.util.List;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
 
-public class Delete extends HasSqlRestrictions<Delete> implements IsClause {
+public class Delete extends HasSqlRestrictions<Delete>implements IsClause {
 
     private static final long serialVersionUID = 2641125597478747761L;
 
@@ -16,13 +16,17 @@ public class Delete extends HasSqlRestrictions<Delete> implements IsClause {
     // From clause.
     private From from;
 
-    public Delete(String table) {
-        this(new Table(table));
+    public Delete() {
+        this.fields = new ArrayList<Field>();
     }
 
     public Delete(Table table) {
-        this.fields = new ArrayList<Field>();
+        this();
         this.from = new From(table);
+    }
+
+    public Delete(String table) {
+        this(new Table(table));
     }
 
     /**
@@ -81,10 +85,13 @@ public class Delete extends HasSqlRestrictions<Delete> implements IsClause {
             buffer.append(QueryFactory.buildDelete(fields));
         } else {
             buffer.append(SqlClauses.DELETE);
-            buffer.append(SeparatorType.EMPTY);
+            if (from != null) {
+                buffer.append(SeparatorType.EMPTY);
+            }
         }
-
-        buffer.append(QueryFactory.buildFrom(from));
+        if (from != null) {
+            buffer.append(QueryFactory.buildFrom(from));
+        }
         buffer.append(QueryFactory.buildWhere(getRestrictions()));
 
         return buffer.toString();

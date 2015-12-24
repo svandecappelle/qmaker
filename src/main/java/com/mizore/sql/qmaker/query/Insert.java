@@ -18,10 +18,14 @@ public class Insert {
     private final Map<Field, Object> values;
     private final Map<Field, Renderer> renderers;
 
-    public Insert(Table table) {
-        this.table = table;
+    public Insert(){
         this.values = new LinkedHashMap<Field, Object>();
         this.renderers = new HashMap<Field, Renderer>();
+    }
+    
+    public Insert(Table table) {
+        this();
+        this.table = table;
     }
 
     public Insert(String table) {
@@ -72,10 +76,15 @@ public class Insert {
         StringBuilder builder = new StringBuilder();
         builder.append(SqlClauses.INSERT);
         builder.append(SeparatorType.EMPTY);
-        builder.append(SqlClauses.INTO);
-        builder.append(SeparatorType.EMPTY);
-        builder.append(table);
-        builder.append(SeparatorType.EMPTY);
+
+        
+        if (table != null){
+            builder.append(SqlClauses.INTO);
+            builder.append(SeparatorType.EMPTY);
+            
+            builder.append(table);
+            builder.append(SeparatorType.EMPTY);
+        }
 
         builder.append(SeparatorType.LEFT_PARENTHESIS);
         Iterator<Entry<Field, Object>> it = this.values.entrySet().iterator();

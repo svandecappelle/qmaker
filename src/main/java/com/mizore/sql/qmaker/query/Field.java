@@ -5,6 +5,7 @@ import java.io.Serializable;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
 
+
 /**
  * @author svandecappelle
  *
@@ -20,7 +21,9 @@ public class Field implements Serializable {
     private Table table;
 
     // Field name.
-    private String fieldName;
+    private Object fieldName;
+
+    private Renderer<Object> renderer = new StringSqlValueRenderer();
 
     // Field alias.
     private As as;
@@ -31,7 +34,7 @@ public class Field implements Serializable {
      * @param fieldName
      *            the SQL field name.
      */
-    public Field(String fieldName) {
+    public <T> Field(T fieldName) {
         this.fieldName = fieldName;
     }
 
@@ -43,7 +46,7 @@ public class Field implements Serializable {
      * @param fieldName
      *            field name.
      */
-    public Field(Table table, String fieldName) {
+    public <T> Field(Table table, T fieldName) {
         this.table = table;
         this.fieldName = fieldName;
     }
@@ -68,7 +71,7 @@ public class Field implements Serializable {
      * @return the field name.
      */
     public String getName() {
-        return this.fieldName;
+        return renderer.render(this.fieldName);
     }
 
     /**
@@ -87,6 +90,15 @@ public class Field implements Serializable {
      */
     protected Table getTable() {
         return table;
+    }
+
+    /**
+     * Check if field as SQL alias defined.
+     * 
+     * @return <code>true if field as SQL alias defined.</code>
+     */
+    public boolean hasAlias() {
+        return getAlias() != null;
     }
 
     @Override

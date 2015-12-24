@@ -1,7 +1,5 @@
 package qmaker;
 
-import java.util.logging.Logger;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,14 +7,11 @@ import com.mizore.sql.qmaker.query.Query;
 
 public class JoinTest {
 
-    private final Logger logger = Logger.getLogger("SimpleJoin");
-
     @Test
     public void simpleJoin() {
         Query q = new Query();
         q.select("TABLE_1", "FIELD").as("ALIAS_1");
         q.from("TABLE_1").innerJoin("TABLE_2").on("TABLE_1.ID").equalsTo("TABLE_2.TABLE_2_ID");
-        logger.info(q.toString());
         Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1 INNER JOIN TABLE_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID", q.toString());
     }
 
@@ -25,7 +20,6 @@ public class JoinTest {
         Query q = new Query();
         q.select("TABLE_1", "FIELD").as("ALIAS_1");
         q.from("TABLE_1").innerJoin("TABLE_2").on("TABLE_1.ID").equalsTo("TABLE_2.TABLE_2_ID").on("TABLE_1.ID2").equalsTo("TABLE_2.TABLE_2_ID2");
-        logger.info(q.toString());
         Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1 INNER JOIN TABLE_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID AND TABLE_1.ID2 = TABLE_2.TABLE_2_ID2", q.toString());
     }
 
@@ -34,7 +28,6 @@ public class JoinTest {
         Query q = new Query();
         q.select("TABLE_1", "FIELD").as("ALIAS_1");
         q.from("TABLE_1").as("JOIN_ALIAS_1").innerJoin("TABLE_2").on("TABLE_1.ID").equalsTo("TABLE_2.TABLE_2_ID").innerJoin("TABLE_3").on("TABLE_1.ID").equalsTo("TABLE_3.TABLE_3_ID");
-        logger.info(q.toString());
         Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM (TABLE_1) JOIN_ALIAS_1 INNER JOIN TABLE_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID INNER JOIN TABLE_3 ON TABLE_1.ID = TABLE_3.TABLE_3_ID", q.toString());
     }
 
@@ -43,7 +36,6 @@ public class JoinTest {
         Query q = new Query();
         q.select("TABLE_1", "FIELD").as("ALIAS_1");
         q.from("TABLE_1").as("JOIN_ALIAS_1").innerJoin("TABLE_2").as("JOIN_ALIAS_2").on("TABLE_1.ID").equalsTo("TABLE_2.TABLE_2_ID").innerJoin("TABLE_3").on("TABLE_1.ID").equalsTo("TABLE_3.TABLE_3_ID");
-        logger.info(q.toString());
         Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM (TABLE_1) JOIN_ALIAS_1 INNER JOIN (TABLE_2) JOIN_ALIAS_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID INNER JOIN TABLE_3 ON TABLE_1.ID = TABLE_3.TABLE_3_ID", q.toString());
     }
 
@@ -52,7 +44,6 @@ public class JoinTest {
         Query q = new Query();
         q.select("TABLE_1", "FIELD").as("ALIAS_1");
         q.from("TABLE_1").innerJoin("TABLE_2").on("TABLE_1.ID").equalsTo("TABLE_2.TABLE_2_ID").innerJoin("TABLE_3").on("TABLE_1.ID").equalsTo("TABLE_3.TABLE_3_ID");
-        logger.info(q.toString());
         Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1 INNER JOIN TABLE_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID INNER JOIN TABLE_3 ON TABLE_1.ID = TABLE_3.TABLE_3_ID", q.toString());
     }
 
@@ -62,7 +53,6 @@ public class JoinTest {
         q.select("TABLE_1", "FIELD").as("ALIAS_1");
         q.from("TABLE_1").innerJoin("TABLE_2").on("TABLE_1.ID").equalsTo("TABLE_2.TABLE_2_ID");
         q.innerJoin("TABLE_3").on("TABLE_1.ID").equalsTo("TABLE_3.TABLE_3_ID");
-        logger.info(q.toString());
         Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1 INNER JOIN TABLE_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID INNER JOIN TABLE_3 ON TABLE_1.ID = TABLE_3.TABLE_3_ID", q.toString());
     }
 
@@ -71,7 +61,6 @@ public class JoinTest {
         Query q = new Query();
         q.select("TABLE_1", "FIELD").as("ALIAS_1");
         q.from("TABLE_1").leftJoin("TABLE_2").on("TABLE_1.ID").equalsTo("TABLE_2.TABLE_2_ID");
-        logger.info(q.toString());
         Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1 LEFT JOIN TABLE_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID", q.toString());
     }
 
@@ -80,7 +69,6 @@ public class JoinTest {
         Query q = new Query();
         q.select("TABLE_1", "FIELD").as("ALIAS_1");
         q.from("TABLE_1").rightJoin("TABLE_2").on("TABLE_1.ID").equalsTo("TABLE_2.TABLE_2_ID");
-        logger.info(q.toString());
         Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1 RIGHT JOIN TABLE_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID", q.toString());
     }
 
@@ -89,7 +77,6 @@ public class JoinTest {
         Query q = new Query();
         q.select("TABLE_1", "FIELD").as("ALIAS_1");
         q.from("TABLE_1").innerJoin("TABLE_2").on("TABLE_1.ID").equalsTo("TABLE_2.TABLE_2_ID");
-        logger.info(q.toString());
         Assert.assertEquals("SELECT TABLE_1.FIELD AS ALIAS_1 FROM TABLE_1 INNER JOIN TABLE_2 ON TABLE_1.ID = TABLE_2.TABLE_2_ID", q.toString());
     }
 }
