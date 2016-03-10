@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.mizore.sql.qmaker.filters.Expression;
 import com.mizore.sql.qmaker.filters.ExpressionType;
+import com.mizore.sql.qmaker.query.functions.IsEqualsExpression;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 
 /**
@@ -304,10 +305,18 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
 
         switch (type) {
         case EQUALS:
-            exp = new EqualsExpression(expression.toString());
+            if (expression == null) {
+                exp = new IsEqualsExpression("NULL");
+            } else {
+                exp = new EqualsExpression(expression.toString());
+            }
             break;
         case DIFFERENT:
-            exp = new NotEqualsExpression(expression.toString());
+            if (expression == null) {
+                exp = new IsEqualsExpression("NOT NULL");
+            } else {
+                exp = new NotEqualsExpression(expression.toString());
+            }
             break;
         case LOWER:
             exp = new LowerExpression(expression.toString());
@@ -623,9 +632,8 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
         return this.setExpression(ExpressionType.LOWER, schema, table, field);
     }
 
-    
     // LIKE
-    
+
     /**
      * Set lower SQL restriction value.
      * 

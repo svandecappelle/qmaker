@@ -17,7 +17,8 @@ public enum ExpressionType {
     EXISTS("EXISTS"),
     NOT_EXISTS("NOT EXISTS"),
     IN("IN"),
-    NOT_IN("NOT IN");
+    NOT_IN("NOT IN"),
+    IS("IS");
 
     private String sql;
 
