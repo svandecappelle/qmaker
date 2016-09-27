@@ -4,7 +4,3 @@ jdk:
   - oraclejdk8
   - oraclejdk7
   - openjdk6
-install: mvn clean test
-sudo: false
-git:
-submodules: false
