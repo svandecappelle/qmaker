@@ -12,7 +12,7 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
  *
  *        Make a query.
  */
-public class Query extends HasSqlRestrictions<Query>implements IsClause, IsSelectionQuery {
+public class Query extends HasSqlRestrictions<Query> implements IsClause, IsSelectionQuery {
 
     private static final long serialVersionUID = 3483079046115811468L;
 
@@ -345,6 +345,13 @@ public class Query extends HasSqlRestrictions<Query>implements IsClause, IsSelec
         } else {
             return this.orderBy.and(schemaName, tableName, fieldName).desc();
         }
+    }
+
+    /**
+     * Clear the all 'order by' clauses.
+     */
+    public void clearOrderBy() {
+        this.orderBy = null;
     }
 
     @Override

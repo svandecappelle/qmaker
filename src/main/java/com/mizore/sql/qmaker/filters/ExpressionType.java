@@ -13,6 +13,7 @@ public enum ExpressionType {
     LOWER("<"),
     DIFFERENT("<>"),
     LIKE("LIKE"),
+    NOT_LIKE("NOT LIKE"),
     BETWEEN("BETWEEN"),
     EXISTS("EXISTS"),
     NOT_EXISTS("NOT EXISTS"),
