@@ -416,9 +416,11 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
             builder.append(field);
             builder.append(SeparatorType.EMPTY);
         }
-
-        builder.append(expressionFilter);
-
+        
+        if (expressionFilter != null) {
+            builder.append(expressionFilter);
+        }
+        
         return builder.toString();
 
     }
