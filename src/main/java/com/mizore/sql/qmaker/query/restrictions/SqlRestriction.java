@@ -6,6 +6,7 @@ import com.mizore.sql.qmaker.filters.Expression;
 import com.mizore.sql.qmaker.filters.ExpressionType;
 import com.mizore.sql.qmaker.query.Field;
 import com.mizore.sql.qmaker.query.IsClause;
+import com.mizore.sql.qmaker.query.NotLikeExpression;
 import com.mizore.sql.qmaker.query.Table;
 import com.mizore.sql.qmaker.query.functions.IsEqualsExpression;
 import com.mizore.sql.qmaker.utils.SeparatorType;

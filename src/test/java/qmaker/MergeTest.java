@@ -5,8 +5,8 @@ import org.junit.Test;
 import com.mizore.sql.qmaker.query.Delete;
 import com.mizore.sql.qmaker.query.Insert;
 import com.mizore.sql.qmaker.query.Merge;
-import com.mizore.sql.qmaker.query.StringSqlValueRenderer;
 import com.mizore.sql.qmaker.query.Merge.Match;
+import com.mizore.sql.qmaker.query.StringSqlValueRenderer;
 import com.mizore.sql.qmaker.query.Update;
 
 import junit.framework.Assert;
