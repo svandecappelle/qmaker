@@ -1,4 +1,4 @@
-package com.mizore.sql.qmaker.query;
+package com.mizore.sql.qmaker.query.types;
 
 import java.io.Serializable;
 

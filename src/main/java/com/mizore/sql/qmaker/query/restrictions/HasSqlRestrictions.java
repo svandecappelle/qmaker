@@ -1,8 +1,12 @@
-package com.mizore.sql.qmaker.query;
+package com.mizore.sql.qmaker.query.restrictions;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mizore.sql.qmaker.query.Field;
+import com.mizore.sql.qmaker.query.IsClause;
+import com.mizore.sql.qmaker.query.Table;
 
 public abstract class HasSqlRestrictions<T extends IsClause> implements Serializable {
 

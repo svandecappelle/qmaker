@@ -1,9 +1,12 @@
-package com.mizore.sql.qmaker.query;
+package com.mizore.sql.qmaker.query.restrictions;
 
 import java.io.Serializable;
 
 import com.mizore.sql.qmaker.filters.Expression;
 import com.mizore.sql.qmaker.filters.ExpressionType;
+import com.mizore.sql.qmaker.query.Field;
+import com.mizore.sql.qmaker.query.IsClause;
+import com.mizore.sql.qmaker.query.Table;
 import com.mizore.sql.qmaker.query.functions.IsEqualsExpression;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 
@@ -321,6 +324,9 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
         case LOWER:
             exp = new LowerExpression(expression.toString());
             break;
+        case LOWER_OR_EQUALS:
+            exp = new LowerOrEqualsExpression(expression.toString());
+            break;
         case EXISTS:
             exp = new ExistsExpression(expression.toString());
             break;
@@ -332,6 +338,9 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
             break;
         case GREATER:
             exp = new GreaterExpression(expression.toString());
+            break;
+        case GREATER_OR_EQUALS:
+            exp = new GreaterOrEqualsExpression(expression.toString());
             break;
         case IN:
             exp = new InExpression(expression.toString());
@@ -553,7 +562,7 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
     // UPPER
 
     /**
-     * Set greater SQL restriction value.
+     * Set greater or equals SQL restriction value.
      * 
      * @param expression
      *            the expression to filter
@@ -564,7 +573,7 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
     }
 
     /**
-     * Set greater SQL restriction value.
+     * Set greater or equals SQL restriction value.
      * 
      * @param table
      *            table name.
@@ -589,6 +598,46 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
      */
     public T greater(String schema, String table, String field) {
         return this.setExpression(ExpressionType.GREATER, schema, table, field);
+    }
+
+    // UPPER OR EQUALS
+    /**
+     * Set greater or equals SQL restriction value.
+     * 
+     * @param expression
+     *            the expression to filter
+     * @return the expression tested on SQL.
+     */
+    public <O> T greaterOrEquals(O expression) {
+        return this.setExpression(ExpressionType.GREATER_OR_EQUALS, expression);
+    }
+
+    /**
+     * Set greater or equals SQL restriction value.
+     * 
+     * @param table
+     *            table name.
+     * @param field
+     *            field name.
+     * @return the expression tested on SQL.
+     */
+    public T greaterOrEquals(String table, String field) {
+        return this.setExpression(ExpressionType.GREATER_OR_EQUALS, table, field);
+    }
+
+    /**
+     * Set greater or equals SQL restriction value.
+     * 
+     * @param schema
+     *            schema name.
+     * @param table
+     *            table name.
+     * @param field
+     *            fieldname.
+     * @return the expression tested on SQL.
+     */
+    public T greaterOrEquals(String schema, String table, String field) {
+        return this.setExpression(ExpressionType.GREATER_OR_EQUALS, schema, table, field);
     }
 
     // LOWER
@@ -632,6 +681,46 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
         return this.setExpression(ExpressionType.LOWER, schema, table, field);
     }
 
+    // LOWER OR EQUALS
+
+    /**
+     * Set lower or equals SQL restriction value.
+     * 
+     * @param expression
+     *            the expression to filter
+     * @return the expression tested on SQL.
+     */
+    public <O> T lowerOrEquals(O expression) {
+        return this.setExpression(ExpressionType.LOWER_OR_EQUALS, expression);
+    }
+
+    /**
+     * Set lower or equals SQL restriction value.
+     * 
+     * @param table
+     *            table name.
+     * @param field
+     *            field name.
+     * @return the expression tested on SQL.
+     */
+    public T lowerOrEquals(String table, String field) {
+        return this.setExpression(ExpressionType.LOWER_OR_EQUALS, table, field);
+    }
+
+    /**
+     * Set lower or equals SQL restriction value.
+     * 
+     * @param schema
+     *            schema name.
+     * @param table
+     *            table name.
+     * @param field
+     *            fieldname.
+     * @return the expression tested on SQL.
+     */
+    public T lowerOrEquals(String schema, String table, String field) {
+        return this.setExpression(ExpressionType.LOWER_OR_EQUALS, schema, table, field);
+    }
     // LIKE
 
     /**

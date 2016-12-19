@@ -35,7 +35,7 @@ public class ListOrderBy extends SimpleListField<OrderBy> implements OrderBy {
     }
 
     @Override
-    SqlClauses getType() {
+    protected SqlClauses getType() {
         return SqlClauses.ORDER_BY;
     }
 

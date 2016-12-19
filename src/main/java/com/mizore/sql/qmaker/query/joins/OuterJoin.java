@@ -1,4 +1,6 @@
-package com.mizore.sql.qmaker.query;
+package com.mizore.sql.qmaker.query.joins;
+
+import com.mizore.sql.qmaker.query.From;
 
 public class OuterJoin extends Join {
 

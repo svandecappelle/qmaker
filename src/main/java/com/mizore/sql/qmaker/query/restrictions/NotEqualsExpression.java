@@ -1,7 +1,8 @@
-package com.mizore.sql.qmaker.query;
+package com.mizore.sql.qmaker.query.restrictions;
 
 import com.mizore.sql.qmaker.filters.Expression;
 import com.mizore.sql.qmaker.filters.ExpressionType;
+import com.mizore.sql.qmaker.query.Field;
 
 /**
  * An SQL Equals expression. example: X = Y.

@@ -1,7 +1,8 @@
-package com.mizore.sql.qmaker.query;
+package com.mizore.sql.qmaker.query.restrictions;
 
 import com.mizore.sql.qmaker.filters.Expression;
 import com.mizore.sql.qmaker.filters.ExpressionType;
+import com.mizore.sql.qmaker.query.Field;
 
 public class ExistsExpression extends Expression {
     private static final long serialVersionUID = -1175879517163641632L;

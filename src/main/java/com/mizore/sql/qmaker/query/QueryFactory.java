@@ -3,6 +3,7 @@ package com.mizore.sql.qmaker.query;
 import java.io.Serializable;
 import java.util.Collection;
 
+import com.mizore.sql.qmaker.query.restrictions.SqlRestriction;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
 import com.mizore.sql.qmaker.utils.string.S;

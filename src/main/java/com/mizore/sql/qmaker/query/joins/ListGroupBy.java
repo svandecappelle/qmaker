@@ -1,5 +1,6 @@
-package com.mizore.sql.qmaker.query;
+package com.mizore.sql.qmaker.query.joins;
 
+import com.mizore.sql.qmaker.query.SimpleListField;
 import com.mizore.sql.qmaker.utils.SqlClauses;
 
 /**
@@ -25,7 +26,7 @@ public class ListGroupBy extends SimpleListField<GroupBy> implements GroupBy {
     }
 
     @Override
-    SqlClauses getType() {
+    protected SqlClauses getType() {
         return SqlClauses.GROUP_BY;
     }
 

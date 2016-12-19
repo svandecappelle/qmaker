@@ -1,16 +1,17 @@
 package com.mizore.sql.qmaker.filters;
 
 /**
+ * SQL filter expression type enumerate.
+ * 
  * @author svandecappelle
- *
  * @since 0.0.1
- *
- *        SQL filter expression type enumerate.
  */
 public enum ExpressionType {
     EQUALS("="),
     GREATER(">"),
     LOWER("<"),
+    GREATER_OR_EQUALS(">="),
+    LOWER_OR_EQUALS("<="),
     DIFFERENT("<>"),
     LIKE("LIKE"),
     BETWEEN("BETWEEN"),

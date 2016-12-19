@@ -1,4 +1,4 @@
-package com.mizore.sql.qmaker.query;
+package com.mizore.sql.qmaker.query.joins;
 
 import java.util.ArrayList;
 

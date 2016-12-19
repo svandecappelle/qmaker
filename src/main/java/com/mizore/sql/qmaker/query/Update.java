@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.mizore.sql.qmaker.filters.ExpressionType;
+import com.mizore.sql.qmaker.query.restrictions.HasSqlRestrictions;
+import com.mizore.sql.qmaker.query.restrictions.Renderer;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
 

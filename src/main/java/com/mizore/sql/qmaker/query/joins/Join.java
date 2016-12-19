@@ -1,4 +1,4 @@
-package com.mizore.sql.qmaker.query;
+package com.mizore.sql.qmaker.query.joins;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.mizore.sql.qmaker.filters.Expression;
+import com.mizore.sql.qmaker.query.Field;
+import com.mizore.sql.qmaker.query.From;
+import com.mizore.sql.qmaker.query.Table;
+import com.mizore.sql.qmaker.query.restrictions.EqualsExpression;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 import com.mizore.sql.qmaker.utils.SqlClauses;
 

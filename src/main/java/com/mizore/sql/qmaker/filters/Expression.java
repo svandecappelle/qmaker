@@ -2,7 +2,7 @@ package com.mizore.sql.qmaker.filters;
 
 import java.io.Serializable;
 
-import com.mizore.sql.qmaker.query.Join;
+import com.mizore.sql.qmaker.query.joins.Join;
 import com.mizore.sql.qmaker.utils.SeparatorType;
 
 /**

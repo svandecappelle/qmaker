@@ -1,5 +1,6 @@
-package com.mizore.sql.qmaker.query;
+package com.mizore.sql.qmaker.query.joins;
 
+import com.mizore.sql.qmaker.query.SimpleListClause;
 
 /**
  * @author svandecappelle

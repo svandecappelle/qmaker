@@ -5,8 +5,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import com.mizore.sql.qmaker.query.Field;
-import com.mizore.sql.qmaker.query.JoinType;
 import com.mizore.sql.qmaker.query.Query;
+import com.mizore.sql.qmaker.query.joins.JoinType;
 
 /**
  * @author svandecappelle

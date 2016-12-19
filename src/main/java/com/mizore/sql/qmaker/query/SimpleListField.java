@@ -67,5 +67,5 @@ public abstract class SimpleListField<T> extends ArrayList<Field> implements Sim
         return groups.toString();
     }
 
-    abstract SqlClauses getType();
+    protected abstract SqlClauses getType();
 }
