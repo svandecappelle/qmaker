@@ -20,7 +20,6 @@ public abstract class HasSqlRestrictions<T extends IsClause> implements Serializ
 
     protected abstract T getClause();
 
-    
     /**
      * Add an sql Where restrition clause defined by embedded object to the query.
      * 
@@ -33,7 +32,7 @@ public abstract class HasSqlRestrictions<T extends IsClause> implements Serializ
         this.getRestrictions().add(restriction);
         return restriction;
     }
-    
+
     /**
      * Add an sql Where restrition clause to the query.
      * 

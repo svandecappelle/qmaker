@@ -13,6 +13,7 @@ import com.mizore.sql.qmaker.utils.SeparatorType;
 /**
  * @author svandecappelle
  *
+ * @version 0.2.2
  * @since 0.0.1
  *
  *        SQl restriction where clause.
@@ -348,6 +349,9 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
         case NOT_IN:
             exp = new NotInExpression(expression.toString());
             break;
+        case NOT_LIKE:
+            exp = new NotLikeExpression(expression.toString());
+            break;
         default:
             new RuntimeException("get expression with single value doesn't allow type of between");
             break;
@@ -421,9 +425,11 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
             builder.append(field);
             builder.append(SeparatorType.EMPTY);
         }
-
-        builder.append(expressionFilter);
-
+        
+        if (expressionFilter != null) {
+            builder.append(expressionFilter);
+        }
+        
         return builder.toString();
 
     }
@@ -760,5 +766,45 @@ public class SqlRestriction<T extends IsClause> implements Serializable {
      */
     public T like(String schema, String table, String field) {
         return this.setExpression(ExpressionType.LIKE, schema, table, field);
+    }
+
+    // Not like
+    /**
+     * Set not like SQL restriction value.
+     * 
+     * @param expression
+     *            the expression to filter
+     * @return the expression tested on SQL.
+     */
+    public <O> T notLike(O expression) {
+        return this.setExpression(ExpressionType.NOT_LIKE, expression);
+    }
+
+    /**
+     * Set not like SQL restriction value.
+     * 
+     * @param table
+     *            table name.
+     * @param field
+     *            field name.
+     * @return the expression tested on SQL.
+     */
+    public T notLike(String table, String field) {
+        return this.setExpression(ExpressionType.NOT_LIKE, table, field);
+    }
+
+    /**
+     * Set not like SQL restriction value.
+     * 
+     * @param schema
+     *            schema name.
+     * @param table
+     *            table name.
+     * @param field
+     *            fieldname.
+     * @return the expression tested on SQL.
+     */
+    public T notLike(String schema, String table, String field) {
+        return this.setExpression(ExpressionType.NOT_LIKE, schema, table, field);
     }
 }

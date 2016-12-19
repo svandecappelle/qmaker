@@ -14,6 +14,7 @@ public enum ExpressionType {
     LOWER_OR_EQUALS("<="),
     DIFFERENT("<>"),
     LIKE("LIKE"),
+    NOT_LIKE("NOT LIKE"),
     BETWEEN("BETWEEN"),
     EXISTS("EXISTS"),
     NOT_EXISTS("NOT EXISTS"),
