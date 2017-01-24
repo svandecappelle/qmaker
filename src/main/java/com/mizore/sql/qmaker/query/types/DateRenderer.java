@@ -3,7 +3,7 @@ package com.mizore.sql.qmaker.query.types;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.mizore.sql.qmaker.query.restrictions.Renderer;
+import com.mizore.sql.qmaker.query.Renderer;
 
 public class DateRenderer implements Renderer<Date> {
 

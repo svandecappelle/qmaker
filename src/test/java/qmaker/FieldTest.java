@@ -3,16 +3,17 @@ package qmaker;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.mizore.sql.qmaker.query.Field;
 import com.mizore.sql.qmaker.query.Query;
 
-public class RestrictionTest {
+public class FieldTest {
 
     @Test
     public void simpleWhere() {
         Query q = new Query();
         q.select("TABLE_1", "FIELD");
         q.from("TABLE_1");
-        q.where("TABLE_1", "FIELD").equalsTo("1");
+        q.where("TABLE_1", "FIELD").equalsTo(new Field("1"));
         Assert.assertEquals("SELECT TABLE_1.FIELD FROM TABLE_1 WHERE TABLE_1.FIELD = 1", q.asString());
     }
 
@@ -95,4 +96,5 @@ public class RestrictionTest {
         Assert.assertEquals("SELECT TABLE_1.FIELD FROM TABLE_1 WHERE TABLE_1.FIELD BETWEEN 1 AND 2", q.asString());
 
     }
+
 }

@@ -1,4 +1,4 @@
-package com.mizore.sql.qmaker.query.restrictions;
+package com.mizore.sql.qmaker.query;
 
 public interface Renderer<T> {
 

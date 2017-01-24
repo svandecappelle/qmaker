@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.mizore.sql.qmaker.query.Insert;
-import com.mizore.sql.qmaker.query.restrictions.Renderer;
+import com.mizore.sql.qmaker.query.Renderer;
 import com.mizore.sql.qmaker.query.types.DateRenderer;
 import com.mizore.sql.qmaker.query.types.Sequence;
 
